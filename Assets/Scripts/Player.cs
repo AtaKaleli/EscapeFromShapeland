@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
 
+    private bool isGameStarted;
 
     [Header("Player Inputs")]
     [SerializeField] private float moveSpeed;
@@ -33,9 +34,13 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        InputChecks();
+
+        if (!isGameStarted)
+            return;
+
         Move();
 
-        InputChecks();
         CollisionChecks();
         AnimationContoller();
     }
@@ -53,6 +58,9 @@ public class Player : MonoBehaviour
         {
             Jump();
         }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+            isGameStarted = true;
     }
 
 
@@ -60,8 +68,7 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
     }
 
     
