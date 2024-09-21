@@ -6,7 +6,7 @@ public class LevelGenerator : MonoBehaviour
 {
 
     [Header("Spawn Items")]
-    [SerializeField] private Transform levelPartPref;
+    [SerializeField] private Transform[] levelPartPref;
     [SerializeField] private Transform levelPartParent;
     [SerializeField] private Vector3 respawnPoint;
 
@@ -32,7 +32,8 @@ public class LevelGenerator : MonoBehaviour
 
     private void LevelPartGenerator()
     {
-        Transform levelPart = Instantiate(levelPartPref, respawnPoint, Quaternion.identity, levelPartParent);
+        int randomIndex = Random.Range(0, levelPartPref.Length);
+        Transform levelPart = Instantiate(levelPartPref[randomIndex], respawnPoint, Quaternion.identity, levelPartParent);
         Vector3 nextPosition = levelPart.Find("EndPoint").position - levelPart.Find("StartPoint").position;
         respawnPoint = new Vector3(levelPart.position.x + nextPosition.x, nextPosition.y, nextPosition.z);
     }
