@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -14,20 +15,17 @@ public class Player : MonoBehaviour
     private bool canDoubleJump;
 
 
-
     [Header("Collision Detection - Ground")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private LayerMask whatIsGround;
     private bool isGrounded;
 
+
     [Header("Collision Detection - Wall")]
     [SerializeField] private Transform wallCheck;
     [SerializeField] private Vector2 wallCheckSize;
     private bool isWallDetected;
-
-
-
 
 
     [Header("Player - Slide Ability")]
@@ -39,12 +37,23 @@ public class Player : MonoBehaviour
     private bool canSlide = true;
 
 
+    [Header("Speed Up Milestones")]
+    [SerializeField] private float milestoneDistance;
+    [SerializeField] private float multiplier;
+    [SerializeField] private float maxMoveSpeed;
+    private float defaultMoveSpeed;
+    private float defaultMilestoneDistance;
+    private float tempDistance = 100f;
 
 
+    bool i = true;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        defaultMoveSpeed = 8f;
+        defaultMilestoneDistance = 100f;
 
     }
 
@@ -62,7 +71,7 @@ public class Player : MonoBehaviour
             canSlide = true;
         }
 
-
+        
 
 
 
@@ -75,11 +84,11 @@ public class Player : MonoBehaviour
         {
             canDoubleJump = true;
         }
+        
+        
 
 
-
-
-
+        SpeedUpController();
         Move();
         CollisionChecks();
         AnimationContoller();
@@ -108,6 +117,12 @@ public class Player : MonoBehaviour
         {
             SlideController();
         }
+
+        
+        
+           
+            
+        
     }
 
 
@@ -143,6 +158,7 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    #region Slide Ability
     private void SlideController()
     {
 
@@ -155,6 +171,36 @@ public class Player : MonoBehaviour
 
     }
 
+    #endregion
+
+    #region Speed Up & Down
+
+    private void SpeedUpController()
+    {
+        
+        if (moveSpeed == maxMoveSpeed)
+            return;
+        
+        if(transform.position.x > milestoneDistance)
+        {
+            milestoneDistance = transform.position.x + tempDistance * multiplier;
+            tempDistance *= multiplier;
+            moveSpeed *= multiplier;
+            
+            if (moveSpeed > maxMoveSpeed)
+                moveSpeed = maxMoveSpeed;
+        }
+    }
+
+    private void SlowDownController()
+    {
+       
+        moveSpeed = defaultMoveSpeed;
+        tempDistance = defaultMilestoneDistance;
+        milestoneDistance = transform.position.x + tempDistance;
+    }
+
+    #endregion
 
 
     private void CollisionChecks()
