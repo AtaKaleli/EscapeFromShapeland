@@ -39,14 +39,18 @@ public class Player : MonoBehaviour
 
     [Header("Speed Up Milestones")]
     [SerializeField] private float milestoneDistance;
-    [SerializeField] private float multiplier;
+    [SerializeField] private float speedMultiplier;
+    [SerializeField] private float distanceMultiplier;
     [SerializeField] private float maxMoveSpeed;
     private float defaultMoveSpeed;
     private float defaultMilestoneDistance;
     private float tempDistance = 100f;
 
+    //Player Roll
+    private bool isRolling;
 
-    bool i = true;
+
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -65,34 +69,23 @@ public class Player : MonoBehaviour
 
         slideTimeCounter -= Time.deltaTime;
 
-        if (slideTimeCounter < 0 && !isUpperGrounded)
-        {
-            isSliding = false;
-            canSlide = true;
-        }
-
-        
-
-
 
         InputChecks();
 
         if (!isGameStarted)
             return;
-
-        if (isGrounded)
-        {
-            canDoubleJump = true;
-        }
         
         
-
-
+        AllowDoubleJump();
+        CancelSlideAbility();
+        RollController();
         SpeedUpController();
         Move();
         CollisionChecks();
         AnimationContoller();
     }
+
+    
 
     private void AnimationContoller()
     {
@@ -101,6 +94,8 @@ public class Player : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
         anim.SetBool("isDoubleJumping", !canDoubleJump);
         anim.SetBool("isSliding", isSliding);
+        anim.SetBool("isRolling", isRolling);
+        
     }
 
     private void InputChecks()
@@ -156,11 +151,20 @@ public class Player : MonoBehaviour
 
     }
 
+    private void AllowDoubleJump()
+    {
+        if (isGrounded)
+        {
+            canDoubleJump = true;
+        }
+    }
+
     #endregion
 
     #region Slide Ability
     private void SlideController()
     {
+        
 
         if (canSlide && isGrounded)
         {
@@ -170,6 +174,16 @@ public class Player : MonoBehaviour
         }
 
     }
+
+    private void CancelSlideAbility()
+    {
+        if (slideTimeCounter < 0 && !isUpperGrounded)
+        {
+            isSliding = false;
+            canSlide = true;
+        }
+    }
+
 
     #endregion
 
@@ -183,9 +197,9 @@ public class Player : MonoBehaviour
         
         if(transform.position.x > milestoneDistance)
         {
-            milestoneDistance = transform.position.x + tempDistance * multiplier;
-            tempDistance *= multiplier;
-            moveSpeed *= multiplier;
+            milestoneDistance = transform.position.x + tempDistance * distanceMultiplier;
+            tempDistance *= distanceMultiplier;
+            moveSpeed *= speedMultiplier;
             
             if (moveSpeed > maxMoveSpeed)
                 moveSpeed = maxMoveSpeed;
@@ -198,6 +212,22 @@ public class Player : MonoBehaviour
         moveSpeed = defaultMoveSpeed;
         tempDistance = defaultMilestoneDistance;
         milestoneDistance = transform.position.x + tempDistance;
+    }
+
+    #endregion
+
+    #region Roll 
+    private void RollController()
+    {
+        if (rb.velocity.y < -20f && isGrounded)
+        {
+            isRolling = true;
+        }
+    }
+
+    public void CancelRolling()
+    {
+        isRolling = false;
     }
 
     #endregion

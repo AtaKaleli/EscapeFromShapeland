@@ -304,8 +304,9 @@ MonoBehaviour:
   slideTime: 1.5
   upperGroundCheckDistance: 0.8
   milestoneDistance: 100
-  multiplier: 1.5
-  maxMoveSpeed: 20
+  speedMultiplier: 1.25
+  distanceMultiplier: 1.5
+  maxMoveSpeed: 25
 --- !u!95 &132057406
 Animator:
   serializedVersion: 5
@@ -1740,7 +1741,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelPartPref:
-  - {fileID: 5976290276158084370, guid: 527431ff17cdbbf46b3743d0a75198c6, type: 3}
   - {fileID: 5976290276158084370, guid: f384b97a785228845a6046736933009f, type: 3}
   levelPartParent: {fileID: 1261201538}
   respawnPoint: {x: 0, y: 0, z: 0}
@@ -2054,7 +2054,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852805015}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.42, y: 9.5, z: 0}
+  m_LocalPosition: {x: 1.42, y: 6.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
