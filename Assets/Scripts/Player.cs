@@ -1,11 +1,15 @@
+using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Sequences;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
 
     private Rigidbody2D rb;
     private Animator anim;
+    private SpriteRenderer sr;
 
     private bool isGameStarted;
 
@@ -46,16 +50,28 @@ public class Player : MonoBehaviour
     private float defaultMilestoneDistance;
     private float tempDistance = 100f;
 
-    //Player Roll
+    //Player Roll Information
     private bool isRolling;
 
-
+    [Header("Knockback")]
+    [SerializeField] private float knockbackTime;
+    [SerializeField] private Vector2 knockbackDirection;
+    private bool isKnocked;
+    private bool canBeKnocked = true;
     
+
+    //Player Die Information
+    private bool isDead;
+    private bool hasExtraLife;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
 
+        isDead = false;
         defaultMoveSpeed = 8f;
         defaultMilestoneDistance = 100f;
 
@@ -68,13 +84,18 @@ public class Player : MonoBehaviour
     {
 
         slideTimeCounter -= Time.deltaTime;
-
+        AnimationContoller();
 
         InputChecks();
+        
+        if (isDead || isKnocked)
+            return;
+
 
         if (!isGameStarted)
             return;
-        
+
+       
         
         AllowDoubleJump();
         CancelSlideAbility();
@@ -82,7 +103,6 @@ public class Player : MonoBehaviour
         SpeedUpController();
         Move();
         CollisionChecks();
-        AnimationContoller();
     }
 
     
@@ -95,6 +115,8 @@ public class Player : MonoBehaviour
         anim.SetBool("isDoubleJumping", !canDoubleJump);
         anim.SetBool("isSliding", isSliding);
         anim.SetBool("isRolling", isRolling);
+        anim.SetBool("isKnocked", isKnocked);
+        anim.SetBool("isDead", isDead);
         
     }
 
@@ -113,9 +135,11 @@ public class Player : MonoBehaviour
             SlideController();
         }
 
-        
-        
-           
+        if (Input.GetKeyDown(KeyCode.R))
+            SceneManager.LoadScene("SampleScene");
+
+        if (Input.GetKeyDown(KeyCode.L))
+            hasExtraLife = true;
             
         
     }
@@ -193,7 +217,10 @@ public class Player : MonoBehaviour
     {
         
         if (moveSpeed == maxMoveSpeed)
+        {
+            hasExtraLife = true;
             return;
+        }
         
         if(transform.position.x > milestoneDistance)
         {
@@ -231,6 +258,97 @@ public class Player : MonoBehaviour
     }
 
     #endregion
+
+    #region Knockback & Die
+    public void Damage()
+    {
+        if (hasExtraLife)
+        {
+            SlowDownController();
+            Knockback();
+            hasExtraLife = false;
+        }
+        else
+            Die();
+    }
+
+    private void Die()
+    {
+        if(canBeKnocked)
+            StartCoroutine(DieCouroutine());
+    }
+
+    private IEnumerator DieCouroutine()
+    {
+        isDead = true;
+        rb.velocity = knockbackDirection;
+        yield return new WaitForSeconds(1f);
+        rb.velocity = new Vector2(0, 0);
+
+
+    }
+
+    private void Knockback()
+    {
+        if (canBeKnocked)
+            StartCoroutine(KnockbackCouroutine());
+    }
+
+    private IEnumerator KnockbackCouroutine()
+    {
+        Color normalColor = new Color(1, 1, 1, 1);
+        Color midAlphaColor = new Color(1, 1, 1, 0.75f);
+        Color lowAlphaColor = new Color(1, 1, 1, 0.25f);
+
+        isKnocked = true;
+        canBeKnocked = false;
+        rb.velocity = knockbackDirection;
+
+        sr.color = midAlphaColor;
+        yield return new WaitForSeconds(0.1f);
+        sr.color = lowAlphaColor;
+        yield return new WaitForSeconds(0.1f);
+
+        sr.color = midAlphaColor;
+        yield return new WaitForSeconds(0.15f);
+        sr.color = lowAlphaColor;
+        yield return new WaitForSeconds(0.15f);
+
+        sr.color = midAlphaColor;
+        yield return new WaitForSeconds(0.15f);
+        sr.color = lowAlphaColor;
+        yield return new WaitForSeconds(0.15f);
+
+        isKnocked = false;
+
+        sr.color = midAlphaColor;
+        yield return new WaitForSeconds(0.2f);
+        sr.color = lowAlphaColor;
+        yield return new WaitForSeconds(0.2f);
+
+        sr.color = midAlphaColor;
+        yield return new WaitForSeconds(0.3f);
+        sr.color = lowAlphaColor;
+        yield return new WaitForSeconds(0.3f);
+
+        sr.color = midAlphaColor;
+        yield return new WaitForSeconds(0.4f);
+        sr.color = lowAlphaColor;
+        yield return new WaitForSeconds(0.4f);
+
+
+
+        sr.color = normalColor;
+        canBeKnocked = true;
+
+
+    }
+
+    #endregion
+
+
+    
+    
 
 
     private void CollisionChecks()

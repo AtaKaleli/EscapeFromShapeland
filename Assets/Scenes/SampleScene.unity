@@ -301,12 +301,14 @@ MonoBehaviour:
     m_Bits: 64
   wallCheck: {fileID: 865157448}
   wallCheckSize: {x: 0.4, y: 2.5}
-  slideTime: 1.5
+  slideTime: 1
   upperGroundCheckDistance: 0.8
   milestoneDistance: 100
   speedMultiplier: 1.25
   distanceMultiplier: 1.5
   maxMoveSpeed: 25
+  knockbackTime: 0.75
+  knockbackDirection: {x: -10, y: 10}
 --- !u!95 &132057406
 Animator:
   serializedVersion: 5
@@ -1741,7 +1743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelPartPref:
-  - {fileID: 5976290276158084370, guid: f384b97a785228845a6046736933009f, type: 3}
+  - {fileID: 5976290276158084370, guid: 527431ff17cdbbf46b3743d0a75198c6, type: 3}
   levelPartParent: {fileID: 1261201538}
   respawnPoint: {x: 0, y: 0, z: 0}
   distanceToSpawn: 50
@@ -2392,7 +2394,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 997075775
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
