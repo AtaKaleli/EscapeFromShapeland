@@ -18,6 +18,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpForce;
     private bool canDoubleJump;
 
+    [Header("Cayote Jump")]
+    [SerializeField] private float cayoteJumpTime;
+    private float cayoteJumpCounter;
+    private bool canCayoteJump;
+
 
     [Header("Collision Detection - Ground")]
     [SerializeField] private Transform groundCheck;
@@ -84,8 +89,10 @@ public class Player : MonoBehaviour
     {
 
         slideTimeCounter -= Time.deltaTime;
-        AnimationContoller();
+        cayoteJumpCounter -= Time.deltaTime;
 
+
+        AnimationContoller();
         InputChecks();
         
         if (isDead || isKnocked)
@@ -97,7 +104,7 @@ public class Player : MonoBehaviour
 
        
         
-        AllowDoubleJump();
+        AllowJumpAbilities();
         CancelSlideAbility();
         RollController();
         SpeedUpController();
@@ -162,7 +169,7 @@ public class Player : MonoBehaviour
 
     private void JumpController()
     {
-        if (isGrounded)
+        if (isGrounded || cayoteJumpCounter > 0)
         {
             Jump(1f);
         }
@@ -175,11 +182,20 @@ public class Player : MonoBehaviour
 
     }
 
-    private void AllowDoubleJump()
+    private void AllowJumpAbilities()
     {
         if (isGrounded)
         {
             canDoubleJump = true;
+            canCayoteJump = true;
+        }
+        else
+        {
+            if (canCayoteJump)
+            {
+                canCayoteJump = false;
+                cayoteJumpCounter = cayoteJumpTime;
+            }
         }
     }
 

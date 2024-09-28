@@ -294,6 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8
   jumpForce: 15
+  cayoteJumpTime: 0.15
   groundCheck: {fileID: 7301805}
   groundCheckDistance: 1.39
   whatIsGround:
