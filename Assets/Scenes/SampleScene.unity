@@ -1815,10 +1815,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 0.25
-  player: {fileID: 132057405}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  player: {fileID: 132057405}
 --- !u!61 &1459027988
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1832,7 +1832,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.067765236, y: 0.20831645}
+  m_Offset: {x: 0.29702854, y: 0.20831645}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1843,7 +1843,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7339592, y: 0.35246158}
+  m_Size: {x: 1.0733871, y: 0.35246158}
   m_EdgeRadius: 0
 --- !u!1 &1535144086
 GameObject:
@@ -2059,6 +2059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coins: 0
+  platformColor: {r: 0.2052616, g: 0.8318937, b: 0.85660374, a: 1}
 --- !u!4 &1648007483
 Transform:
   m_ObjectHideFlags: 0

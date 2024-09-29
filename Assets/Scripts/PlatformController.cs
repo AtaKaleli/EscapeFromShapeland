@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] SpriteRenderer sr;
+    [SerializeField] SpriteRenderer headerSr;
+
+    private void Start()
     {
-        
+        headerSr.transform.parent = transform.parent;
+        headerSr.transform.localScale = new Vector2(sr.bounds.size.x, 0.2f);
+        headerSr.transform.position = new Vector2(transform.position.x, sr.bounds.max.y);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if(collision.GetComponent<Player>() != null)
+        {
+            headerSr.color = GameManager.instance.platformColor;
+        }
     }
+
+
+
+
 }
