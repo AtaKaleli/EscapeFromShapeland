@@ -47,16 +47,9 @@ public class Player : MonoBehaviour
 
 
     //Player Ledge Detection Info
-    [HideInInspector] public bool ledgeDetected;
+    
 
-    [Header("Ledge Info")]
-    [SerializeField] private Vector2 offset1;
-    [SerializeField] private Vector2 offset2;
-    private Vector2 climbBegunPosition;
-    private Vector2 climbOverPosition;
-
-    private bool canGrabledge = true;
-    private bool canClimb;
+    
 
 
     [Header("Speed Up Milestones")]
@@ -116,7 +109,7 @@ public class Player : MonoBehaviour
             return;
 
 
-        LedgeCheck();
+        
         AllowJumpAbilities();
         CancelSlideAbility();
         RollController();
@@ -134,7 +127,7 @@ public class Player : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
         anim.SetBool("isDoubleJumping", !canDoubleJump);
         anim.SetBool("isSliding", isSliding);
-        anim.SetBool("canClimb", canClimb);
+        
         anim.SetBool("isRolling", isRolling);
         anim.SetBool("isKnocked", isKnocked);
         anim.SetBool("isDead", isDead);
@@ -242,34 +235,7 @@ public class Player : MonoBehaviour
     #endregion
 
 
-    private void LedgeCheck()
-    {
-        if(ledgeDetected && canGrabledge)
-        {
-            canGrabledge = false;
-
-            Vector2 ledgePosition = GetComponentInChildren<LedgeDetection>().transform.position;
-
-            climbBegunPosition = ledgePosition + offset1;
-            climbOverPosition = ledgePosition + offset2;
-
-            canClimb = true;
-        }
-
-        if (canClimb)
-        {
-            transform.position = climbBegunPosition;
-        }
-    }
-
-    private void LedgeClimbOver()
-    {
-        canClimb = false;
-        transform.position = climbOverPosition;
-        Invoke("AllowLedgeGrab", 0.1f);
-    }
-
-    private void AllowLedgeGrab() => canGrabledge = true;
+    
 
 
     #region Speed Up & Down
@@ -307,7 +273,7 @@ public class Player : MonoBehaviour
     #region Roll 
     private void RollController()
     {
-        if (rb.velocity.y < -30f && isGrounded && canGrabledge)
+        if (rb.velocity.y < -30f && isGrounded)
         {
             isRolling = true;
         }
