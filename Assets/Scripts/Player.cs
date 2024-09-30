@@ -46,11 +46,15 @@ public class Player : MonoBehaviour
     private bool canSlide = true;
 
 
-    //Player Ledge Detection Info
+    [Header("Ledge Climb ")]
+    [SerializeField] private Vector2 offset1;
+    [SerializeField] private Vector2 offset2;
+    [HideInInspector] public bool isLedgeDetected;
+    private Vector2 climbBegunPosition;
+    private Vector2 climbOverPosition;
+    private bool canClimb;
+    private bool canGrabLedge = true;
     
-
-    
-
 
     [Header("Speed Up Milestones")]
     [SerializeField] private float milestoneDistance;
@@ -97,6 +101,7 @@ public class Player : MonoBehaviour
         slideTimeCounter -= Time.deltaTime;
         cayoteJumpCounter -= Time.deltaTime;
 
+       
 
         AnimationContoller();
         InputChecks();
@@ -108,11 +113,12 @@ public class Player : MonoBehaviour
         if (!isGameStarted)
             return;
 
-
+       
         
         AllowJumpAbilities();
         CancelSlideAbility();
         RollController();
+        LedgeCheck();
         SpeedUpController();
         Move();
         CollisionChecks();
@@ -127,7 +133,7 @@ public class Player : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
         anim.SetBool("isDoubleJumping", !canDoubleJump);
         anim.SetBool("isSliding", isSliding);
-        
+        anim.SetBool("canClimb", canClimb);
         anim.SetBool("isRolling", isRolling);
         anim.SetBool("isKnocked", isKnocked);
         anim.SetBool("isDead", isDead);
@@ -234,9 +240,37 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    #region LedgeClimb
+    private void LedgeCheck()
+    {
+        if(isLedgeDetected && canGrabLedge)
+        {
+            canGrabLedge = false;
 
-    
+            Vector2 ledgePosition = GetComponentInChildren<LedgeDetection>().transform.position;
 
+            climbBegunPosition = ledgePosition + offset1;
+            climbOverPosition = ledgePosition + offset2;
+
+            canClimb = true;
+        }
+        if (canClimb)
+            transform.position = climbBegunPosition;
+    }
+
+    private void LedgeCheckOver()
+    {
+        canClimb = false;
+        transform.position = climbOverPosition;
+        Invoke("AllowLedgeCheck", 0.1f);
+    }
+
+    private void AllowLedgeCheck()
+    {
+        canGrabLedge = true;
+    }
+
+    #endregion
 
     #region Speed Up & Down
 
@@ -273,7 +307,7 @@ public class Player : MonoBehaviour
     #region Roll 
     private void RollController()
     {
-        if (rb.velocity.y < -30f && isGrounded)
+        if (rb.velocity.y < -25f && isGrounded)
         {
             isRolling = true;
         }
