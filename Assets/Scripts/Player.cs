@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sr;
 
-    private bool isGameStarted;
+    [HideInInspector] public bool isGameStarted;
 
     [Header("Player Inputs")]
     [SerializeField] private float moveSpeed;
@@ -147,19 +147,14 @@ public class Player : MonoBehaviour
             JumpController();
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-            isGameStarted = true;
+        
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             SlideController();
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-            SceneManager.LoadScene("SampleScene");
-
-        if (Input.GetKeyDown(KeyCode.L))
-            hasExtraLife = true;
+        
             
         
     }
