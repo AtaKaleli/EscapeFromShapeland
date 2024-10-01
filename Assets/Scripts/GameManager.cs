@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public bool isGameStarted;
+    public bool isGamePaused;
+
     public int coins;
     public Color platformColor;
 
@@ -17,6 +19,22 @@ public class GameManager : MonoBehaviour
             instance = this;
         else
             Destroy(this);
+    }
+
+    public void ResumeGameButton()
+    {
+        Time.timeScale = 1;
+        isGamePaused = false;
+    }
+
+    public void PauseGameButton()
+    {
+        if (!isGamePaused)
+        {
+            Time.timeScale = 0;
+            isGamePaused = true;
+        }
+
     }
 
     public void RestartGame()

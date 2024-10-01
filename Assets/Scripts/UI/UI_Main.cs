@@ -10,9 +10,12 @@ public class UI_Main : MonoBehaviour
 
     
     [SerializeField] private GameObject[] uiElements;
-   
 
 
+    private void Awake()
+    {
+        Time.timeScale = 1;
+    }
 
     private void Start()
     {
@@ -43,8 +46,17 @@ public class UI_Main : MonoBehaviour
         GameManager.instance.isGameStarted = true;
     }
 
+    public void PauseGame(GameObject pauseUI)
+    {
+        SwitchToUI(pauseUI);
+        GameManager.instance.PauseGameButton();
+    }
     
-
+    public void RestartGame(GameObject ingameUI)
+    {
+        SwitchToUI(ingameUI);
+        GameManager.instance.ResumeGameButton();
+    }
     
 
 
