@@ -8,19 +8,9 @@ using UnityEngine.SceneManagement;
 public class UI_Main : MonoBehaviour
 {
 
-    private Player player;
+    
     [SerializeField] private GameObject[] uiElements;
    
-
-    private void Awake()
-    {
-        if (player == null)
-            player = FindAnyObjectByType<Player>();
-    }
-
-    
-
-    
 
 
 
@@ -50,7 +40,7 @@ public class UI_Main : MonoBehaviour
     {
         uiElements[0].SetActive(false);
         ingameUI.SetActive(true);
-        player.isGameStarted = true;
+        GameManager.instance.isGameStarted = true;
     }
 
     

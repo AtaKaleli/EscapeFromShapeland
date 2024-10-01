@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-
+    public bool isGameStarted;
     public int coins;
     public Color platformColor;
 

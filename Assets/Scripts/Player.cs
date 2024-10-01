@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sr;
 
-    [HideInInspector] public bool isGameStarted;
+    
 
     [Header("Player Inputs")]
     [SerializeField] private float moveSpeed;
@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
             return;
 
 
-        if (!isGameStarted)
+        if (!GameManager.instance.isGameStarted)
             return;
 
        

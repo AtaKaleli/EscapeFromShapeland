@@ -496,7 +496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e9169b0aad30f49823138ce2a9056d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGameStarted: 0
   moveSpeed: 8
   jumpForce: 15
   cayoteJumpTime: 0.15
@@ -554,7 +553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &180668052
 Transform:
   m_ObjectHideFlags: 0
@@ -607,7 +606,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -379.29126, y: 42.4}
+  m_AnchoredPosition: {x: -379.29126, y: 32.299995}
   m_SizeDelta: {x: -813.4174, y: -87.1519}
   m_Pivot: {x: 0.50000006, y: 0.5}
 --- !u!114 &183573387
@@ -1850,6 +1849,7 @@ GameObject:
   - component: {fileID: 407606133}
   - component: {fileID: 407606135}
   - component: {fileID: 407606134}
+  - component: {fileID: 407606136}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1974,6 +1974,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407606132}
   m_CullTransparentMesh: 1
+--- !u!95 &407606136
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407606132}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f863db02fc86de844a59dbb5c9e93b24, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &415673360
 GameObject:
   m_ObjectHideFlags: 0
@@ -2234,8 +2255,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 21828361}
-        m_TargetAssemblyTypeName: UI_Main, Assembly-CSharp
+      - m_Target: {fileID: 1648007482}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
@@ -2502,7 +2523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &534900416
 Transform:
   m_ObjectHideFlags: 0
@@ -3437,8 +3458,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 21828361}
-        m_TargetAssemblyTypeName: UI_Main, Assembly-CSharp
+      - m_Target: {fileID: 1648007482}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
@@ -4396,7 +4417,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -379.29126, y: 42.4}
+  m_AnchoredPosition: {x: -379.29126, y: 32.3}
   m_SizeDelta: {x: -813.4174, y: -87.1519}
   m_Pivot: {x: 0.50000006, y: 0.5}
 --- !u!114 &1103409015
@@ -5573,8 +5594,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 21828361}
-        m_TargetAssemblyTypeName: UI_Main, Assembly-CSharp
+      - m_Target: {fileID: 1648007482}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
@@ -5707,8 +5728,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 21828361}
-        m_TargetAssemblyTypeName: UI_Main, Assembly-CSharp
+      - m_Target: {fileID: 1648007482}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
@@ -6322,6 +6343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4709004f337579f4ea642fc71f663975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameStarted: 0
   coins: 0
   platformColor: {r: 0.2052616, g: 0.8318937, b: 0.85660374, a: 1}
 --- !u!4 &1648007483
