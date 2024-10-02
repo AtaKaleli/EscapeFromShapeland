@@ -11,9 +11,14 @@ public class UI_Menu : MonoBehaviour
 
     private void Start()
     {
-        lastScoreText.text = "Last Score: " + "0";
-        bestScoreText.text = "Best Score: " + "0";
-        totalCoinsText.text = "0";
+        DisplayInfo();
+    }
+
+    private void DisplayInfo()
+    {
+        lastScoreText.text = "Last Score: " + GameManager.instance.lastScore.ToString("0");
+        bestScoreText.text = "Best Score: " + GameManager.instance.bestScore.ToString("0");
+        totalCoinsText.text = GameManager.instance.totalCoins.ToString("0");
     }
 
     public void TapToStart(GameObject ingameUI)

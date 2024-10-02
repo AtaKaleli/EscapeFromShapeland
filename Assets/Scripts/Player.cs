@@ -342,6 +342,7 @@ public class Player : MonoBehaviour
         rb.velocity = knockbackDirection;
         yield return new WaitForSeconds(1f);
         rb.velocity = new Vector2(0, 0);
+        GameManager.instance.distance = transform.position.x;
         yield return new WaitForSeconds(1f);
         UI_Main.instance.SwitchToUI(endGameUI);
 
