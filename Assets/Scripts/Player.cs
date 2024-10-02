@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float upperGroundCheckDistance;
     private bool isUpperGrounded;
     private bool isSliding;
-    private bool canSlide = true;
+    [HideInInspector] public bool canSlide = true;
 
 
     [Header("Ledge Climb ")]
@@ -77,8 +77,10 @@ public class Player : MonoBehaviour
 
     //Player Die Information
     private bool isDead;
-    private bool hasExtraLife;
+    [HideInInspector] public bool hasExtraLife;
 
+    //UI Information
+    [SerializeField] private GameObject endGameUI;
 
     void Start()
     {
@@ -340,7 +342,8 @@ public class Player : MonoBehaviour
         rb.velocity = knockbackDirection;
         yield return new WaitForSeconds(1f);
         rb.velocity = new Vector2(0, 0);
-
+        yield return new WaitForSeconds(1f);
+        UI_Main.instance.SwitchToUI(endGameUI);
 
     }
 

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class UI_Main : MonoBehaviour
 {
-
+    public static UI_Main instance;
     
     [SerializeField] private GameObject[] uiElements;
 
@@ -15,6 +15,14 @@ public class UI_Main : MonoBehaviour
     private void Awake()
     {
         Time.timeScale = 1;
+
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this);
+
+        
+
     }
 
     private void Start()
@@ -39,24 +47,7 @@ public class UI_Main : MonoBehaviour
         uiToOpen.SetActive(true);
     }
 
-    public void TapToStart(GameObject ingameUI)
-    {
-        uiElements[0].SetActive(false);
-        ingameUI.SetActive(true);
-        GameManager.instance.isGameStarted = true;
-    }
-
-    public void PauseGame(GameObject pauseUI)
-    {
-        SwitchToUI(pauseUI);
-        GameManager.instance.PauseGameButton();
-    }
-    
-    public void RestartGame(GameObject ingameUI)
-    {
-        SwitchToUI(ingameUI);
-        GameManager.instance.ResumeGameButton();
-    }
+ 
     
 
 
