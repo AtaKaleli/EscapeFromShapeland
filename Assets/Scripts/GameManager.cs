@@ -40,19 +40,19 @@ public class GameManager : MonoBehaviour
 
     private static void UpdateTotalCoins(int coins)
     {
-        int totalCoins = SaveManager.instance.LoadTotalCoins();
+        int totalCoins = SaveManager.LoadTotalCoins();
         totalCoins += coins;
-        SaveManager.instance.SaveTotalCoins(totalCoins);
+        SaveManager.SaveTotalCoins(totalCoins);
     }
 
     private static void UpdateScores(float newScore)
     {
-        PlayerPrefs.SetFloat("LastScore", newScore);
+        SaveManager.SaveLastScore(newScore);
 
-        float bestScore = SaveManager.instance.LoadBestScore();
+        float bestScore = SaveManager.LoadBestScore();
 
         if (newScore >= bestScore)
-            SaveManager.instance.SaveBestScore(newScore);
+            SaveManager.SaveBestScore(newScore);
     }
 
     public int CalculateScore()
