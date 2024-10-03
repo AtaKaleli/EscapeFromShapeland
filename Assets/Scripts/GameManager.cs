@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
+
+
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    
+
+    [Serializable]
+    public struct ShopInformation
+    {
+        public float price;
+        public Color color;
+    }
 
     [Header("Player Info")]
     public bool isGameStarted;
@@ -18,9 +27,13 @@ public class GameManager : MonoBehaviour
     public int coins;
     public int score;
 
-    [Header("Shop UI Data")]
-    public Color platformColor;
-    
+    [Header("Game Color Data")]
+    public Color platformHeadColor;
+    public Color playerSkinColor;
+
+    [Header("Shop Information")]
+    public ShopInformation[] playerColor;
+    public ShopInformation[] platformColor;
     
 
     private void Awake()
@@ -38,14 +51,14 @@ public class GameManager : MonoBehaviour
         UpdateTotalCoins(coins);
     }
 
-    private static void UpdateTotalCoins(int coins)
+    private  void UpdateTotalCoins(int coins)
     {
         int totalCoins = SaveManager.LoadTotalCoins();
         totalCoins += coins;
         SaveManager.SaveTotalCoins(totalCoins);
     }
 
-    private static void UpdateScores(float newScore)
+    private  void UpdateScores(float newScore)
     {
         SaveManager.SaveLastScore(newScore);
 
