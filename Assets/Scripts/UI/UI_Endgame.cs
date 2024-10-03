@@ -13,8 +13,8 @@ public class UI_Endgame : MonoBehaviour
     private void Start()
     {
         float score = GameManager.instance.CalculateScore();
-        float distance = GameManager.instance.distance;
-        int coins = GameManager.instance.coins;
+        float distance = GameManager.instance.Distance;
+        int coins = GameManager.instance.Coins;
 
         DisplayInfo(distance, coins, score);
 

@@ -28,7 +28,7 @@ public class UI_Ingame : MonoBehaviour
     private void UpdateInfo()
     {
         distanceText.text = "Distance: " + player.transform.position.x.ToString("0");
-        coinsText.text = "Coins: " + GameManager.instance.coins.ToString("0");
+        coinsText.text = "Coins: " + GameManager.instance.Coins.ToString("0");
         heartFullImage.SetActive(player.hasExtraLife);
         slideReadyImage.SetActive(player.canSlide);
     }

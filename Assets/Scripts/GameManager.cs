@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System;
 
 
 
@@ -23,9 +20,14 @@ public class GameManager : MonoBehaviour
     public bool isGamePaused;
 
     [Header("EndGame UI Data")]
-    public float distance;
-    public int coins;
-    public int score;
+    private float distance;
+    private int coins;
+    private int score;
+
+    public int Coins { get { return coins; } set { coins = value; } }
+    public float Distance { get { return distance; } set { distance = value; } }
+    public int Score { get { return score; } set { score = value; } }
+
 
     [Header("Game Color Data")]
     public Color platformHeadColor;
@@ -34,7 +36,7 @@ public class GameManager : MonoBehaviour
     [Header("Shop Information")]
     public ShopInformation[] playerColor;
     public ShopInformation[] platformColor;
-    
+
 
     private void Awake()
     {
@@ -51,14 +53,14 @@ public class GameManager : MonoBehaviour
         UpdateTotalCoins(coins);
     }
 
-    private  void UpdateTotalCoins(int coins)
+    private void UpdateTotalCoins(int coins)
     {
         int totalCoins = SaveManager.LoadTotalCoins();
         totalCoins += coins;
         SaveManager.SaveTotalCoins(totalCoins);
     }
 
-    private  void UpdateScores(float newScore)
+    private void UpdateScores(float newScore)
     {
         SaveManager.SaveLastScore(newScore);
 
@@ -70,10 +72,10 @@ public class GameManager : MonoBehaviour
 
     public int CalculateScore()
     {
-        if (distance < 0)
-            distance = 0;
+        if (Distance < 0)
+            Distance = 0;
 
-        return (int)distance * coins;
+        return (int)Distance * Coins;
     }
 
 

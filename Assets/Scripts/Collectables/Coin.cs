@@ -8,7 +8,7 @@ public class Coin : MonoBehaviour
     {
         if(collision.GetComponent<Player>() != null)
         {
-            GameManager.instance.coins++;
+            GameManager.instance.Coins++;
             Destroy(gameObject);
         }
     }
