@@ -8,34 +8,26 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [Serializable]
-    public struct ShopInformation
-    {
-        public float price;
-        public Color color;
-    }
+ 
 
-    [Header("Player Info")]
-    public bool isGameStarted;
-    public bool isGamePaused;
+    private bool isGameStarted;
+    private bool isGamePaused;
 
-    [Header("EndGame UI Data")]
     private float distance;
     private int coins;
-    private int score;
+    
 
     public int Coins { get { return coins; } set { coins = value; } }
     public float Distance { get { return distance; } set { distance = value; } }
-    public int Score { get { return score; } set { score = value; } }
+    public bool GameStarted { get { return isGameStarted; } set { isGameStarted = value; } }
 
 
     [Header("Game Color Data")]
     public Color platformHeadColor;
     public Color playerSkinColor;
 
-    [Header("Shop Information")]
-    public ShopInformation[] playerColor;
-    public ShopInformation[] platformColor;
+
+    
 
 
     private void Awake()

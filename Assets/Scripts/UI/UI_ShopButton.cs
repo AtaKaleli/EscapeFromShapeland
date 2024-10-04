@@ -10,12 +10,14 @@ public class UI_ShopButton : MonoBehaviour
     //[SerializeField] private Image playerImage;
     [SerializeField] private TextMeshProUGUI priceText;
     [SerializeField] private Image playerImage;
-
+    public GameObject soldImage;
+    [HideInInspector] public bool isAvailable = true;
 
     public void SetupButton(float price, Color color)
     {
         priceText.text = price.ToString("0");
         playerImage.color = color;
-
     }
+
+    
 }

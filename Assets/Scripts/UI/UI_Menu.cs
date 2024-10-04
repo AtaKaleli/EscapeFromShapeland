@@ -24,6 +24,6 @@ public class UI_Menu : MonoBehaviour
     public void TapToStart(GameObject ingameUI)
     {
         UI_Main.instance.SwitchToUI(ingameUI);
-        GameManager.instance.isGameStarted = true;
+        GameManager.instance.GameStarted = true;
     }
 }

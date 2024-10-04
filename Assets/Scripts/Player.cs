@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
             return;
 
 
-        if (!GameManager.instance.isGameStarted)
+        if (!GameManager.instance.GameStarted)
             return;
 
        
