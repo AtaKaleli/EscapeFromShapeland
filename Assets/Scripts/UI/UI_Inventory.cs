@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,15 +6,18 @@ using UnityEngine.UI;
 
 
 
-public class UI_ShopPreview : MonoBehaviour
+
+public class UI_Inventory : MonoBehaviour
 {
     [Header("Shop - Item")]
     [Space]
     public ShopInformation[] playerColor;
     public ShopInformation[] platformColor;
 
+
     [Header("Shop - Text")]
-    [SerializeField] private TextMeshProUGUI informationText;
+
+
 
     [Header("Shop - Button")]
     [SerializeField] private GameObject playerColorButton;
@@ -27,12 +29,16 @@ public class UI_ShopPreview : MonoBehaviour
     [SerializeField] private Image playerPreview;
     [SerializeField] private Image platformPreview;
 
+
     private void Start()
     {
         InstantiatePlayerButton();
         InstantiatePlatformButton();
 
-        informationText.text = "Preview";
+
+
+
+
     }
 
     private void InstantiatePlatformButton()
@@ -44,10 +50,18 @@ public class UI_ShopPreview : MonoBehaviour
             var index = i;
             string type = "PlatformHead";
 
+            bool isSold = PlayerPrefs.GetInt(type + index, 0) == 1;
+
+            if (!isSold)
+                continue;
+
             GameObject newButton = Instantiate(platformColorButton, platformButtonParent);
 
             newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, platformHeadColor, index, type);
             newButton.GetComponent<Button>().onClick.AddListener(() => SetPlatformPreview(platformHeadColor));
+
+
+
         }
     }
 
@@ -60,10 +74,17 @@ public class UI_ShopPreview : MonoBehaviour
             var index = i;
             string type = "PlayerSkin";
 
-            GameObject newButton = Instantiate(playerColorButton, playerButtonParent);
+            bool isSold = PlayerPrefs.GetInt(type + index, 0) == 1;
 
+            if (!isSold)
+                continue;
+
+            GameObject newButton = Instantiate(playerColorButton, playerButtonParent);
             newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, playerSkinColor, index, type);
             newButton.GetComponent<Button>().onClick.AddListener(() => SetPlayerPreview(playerSkinColor));
+
+
+
 
         }
     }
@@ -80,5 +101,14 @@ public class UI_ShopPreview : MonoBehaviour
         playerPreview.color = playerSkinColor;
     }
 
+    public void SetDefaultColor()
+    {
+        playerPreview.color = new Color(255, 255, 255, 255); //DEFAULT COLOR FOR PLAYER
+        platformPreview.color = new Color(0, 255, 78, 255); //DEFAULT COLOR FOR PLATFORM HEAD
+    }
+
+
+
 
 }
+

@@ -1,13 +1,11 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
-public enum ShopType { Shop,Preview}
+
 
 [Serializable]
 public struct ShopInformation
@@ -23,21 +21,22 @@ public class UI_Shop : MonoBehaviour
     [Space]
     public ShopInformation[] playerColor;
     public ShopInformation[] platformColor;
-    
+
 
     [Header("Shop - Text")]
     [SerializeField] private TextMeshProUGUI totalCoinsText;
     [SerializeField] private TextMeshProUGUI informationText;
+
 
     [Header("Shop - Button")]
     [SerializeField] private GameObject playerColorButton;
     [SerializeField] private GameObject platformColorButton;
     [SerializeField] private Transform playerButtonParent;
     [SerializeField] private Transform platformButtonParent;
-  
 
 
- 
+
+
     private void Start()
     {
         InstantiatePlayerButton();
@@ -45,9 +44,9 @@ public class UI_Shop : MonoBehaviour
 
         totalCoinsText.text = SaveManager.LoadTotalCoins().ToString("0");
         informationText.text = "Click to Buy";
-        
 
-        
+
+
     }
 
     private void InstantiatePlatformButton()
@@ -56,12 +55,19 @@ public class UI_Shop : MonoBehaviour
         {
             int colorPrice = platformColor[i].price;
             Color platformHeadColor = platformColor[i].color;
-         
+            var index = i;
+            string type = "PlatformHead";
+
+            bool isSold = PlayerPrefs.GetInt(type + index, 0) == 1;
+            
 
             GameObject newButton = Instantiate(platformColorButton, platformButtonParent);
+            newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, platformHeadColor, index, type);
+            newButton.GetComponent<Button>().onClick.AddListener(() => BuyPlatformHeadColor(colorPrice, newButton, index, type));
 
-            newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, platformHeadColor);
-            newButton.GetComponent<Button>().onClick.AddListener(() => BuyPlatformHeadColor(colorPrice, newButton));
+            if (isSold)//if item is sold, still instantiate the buttons, but make them not interactable
+                ItemSold(newButton, index, type);
+
         }
     }
 
@@ -71,54 +77,73 @@ public class UI_Shop : MonoBehaviour
         {
             int colorPrice = playerColor[i].price;
             Color playerSkinColor = playerColor[i].color;
-       
+            var index = i;
+            string type = "PlayerSkin";
+
+            bool isSold = PlayerPrefs.GetInt(type + index, 0) == 1;
 
             GameObject newButton = Instantiate(playerColorButton, playerButtonParent);
-            newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, playerSkinColor);
-            newButton.GetComponent<Button>().onClick.AddListener(() => BuyPlayerSkinColor(colorPrice,newButton));
-            
+            newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, playerSkinColor, index, type);
+            newButton.GetComponent<Button>().onClick.AddListener(() => BuyPlayerSkinColor(colorPrice, newButton, index, type));
 
-            
+            //if item is sold, still instantiate the buttons, but make them not interactable
+            if (isSold)
+                ItemSold(newButton, index, type);
+
+
         }
     }
 
-    
 
-    private void BuyPlatformHeadColor(int colorPrice, GameObject newButton)
+
+    private void BuyPlatformHeadColor(int colorPrice, GameObject newButton, int index, string type)
     {
-        
-        
+
+
         int totalCoins = SaveManager.LoadTotalCoins();
-        
+
         if (totalCoins > colorPrice)
         {
-            informationText.text = "Successfully Bought!";
-            newButton.GetComponent<Button>().interactable = false;
-            newButton.GetComponent<UI_ShopButton>().soldImage.SetActive(true);
-            newButton.GetComponent<UI_ShopButton>().isAvailable = false;
-            
+            StartCoroutine(InformationTextCouroutine("Successfully Purchased!"));
+            ItemSold(newButton, index, type);
+
         }
         else
-            informationText.text = "Not Enough Coins!";
+            StartCoroutine(InformationTextCouroutine("Not Enough Coins!"));
     }
 
-    private void BuyPlayerSkinColor(int colorPrice, GameObject newButton)
+    private void BuyPlayerSkinColor(int colorPrice, GameObject newButton, int index, string type)
     {
-        
-        
+
+
         int totalCoins = SaveManager.LoadTotalCoins();
-        
+
         if (totalCoins > colorPrice)
         {
-            informationText.text = "Successfully Bought!";
-            newButton.GetComponent<Button>().interactable = false;
-            newButton.GetComponent<UI_ShopButton>().soldImage.SetActive(true);
-            newButton.GetComponent<UI_ShopButton>().isAvailable = false;
+            StartCoroutine(InformationTextCouroutine("Successfully Purchased!"));
+            ItemSold(newButton, index, type);
         }
         else
-            informationText.text = "Not Enough Coins!";
+            StartCoroutine(InformationTextCouroutine("Not Enough Coins!"));
     }
 
+
+    private IEnumerator InformationTextCouroutine(string text)
+    {
+        informationText.text = text;
+        yield return new WaitForSeconds(1f);
+        informationText.text = "Click to Buy";
+    }
+    private void ItemSold(GameObject newButton, int index, string type)
+    {
+        newButton.GetComponent<Button>().interactable = false;
+        newButton.GetComponent<UI_ShopButton>().soldImage.SetActive(true);
+        newButton.GetComponent<UI_ShopButton>().isAvailable = false;
+        PlayerPrefs.SetInt(type + index, 1);
+
+    }
     
-   
+    
+
+
 }

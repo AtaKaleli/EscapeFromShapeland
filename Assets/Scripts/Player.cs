@@ -91,11 +91,7 @@ public class Player : MonoBehaviour
         isDead = false;
         defaultMoveSpeed = 8f;
         defaultMilestoneDistance = 100f;
-
     }
-
-
-
 
     void Update()
     {
@@ -139,7 +135,6 @@ public class Player : MonoBehaviour
         anim.SetBool("isRolling", isRolling);
         anim.SetBool("isKnocked", isKnocked);
         anim.SetBool("isDead", isDead);
-       
     }
 
     private void InputChecks()
@@ -149,16 +144,10 @@ public class Player : MonoBehaviour
             JumpController();
         }
 
-        
-
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             SlideController();
         }
-
-        
-            
-        
     }
 
 
@@ -405,11 +394,6 @@ public class Player : MonoBehaviour
     }
 
     #endregion
-
-
-    
-    
-
 
     private void CollisionChecks()
     {
