@@ -3,10 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-
-
-
-
 public class UI_ShopPreview : MonoBehaviour
 {
     [Header("Shop - Item")]
@@ -30,6 +26,7 @@ public class UI_ShopPreview : MonoBehaviour
         InstantiatePlatformButton();
     }
 
+    #region Instantiate Buttons
     private void InstantiatePlatformButton()
     {
         for (int i = 0; i < platformColor.Length; i++)
@@ -57,7 +54,9 @@ public class UI_ShopPreview : MonoBehaviour
             newButton.GetComponent<Button>().onClick.AddListener(() => SetPlayerPreview(playerSkinColor));
         }
     }
+    #endregion
 
+    #region Preview Buttons
     private void SetPlatformPreview(Color platformHeadColor)
     {
         platformPreview.color = platformHeadColor;
@@ -67,6 +66,6 @@ public class UI_ShopPreview : MonoBehaviour
     {
         playerPreview.color = playerSkinColor;
     }
-
+    #endregion
 
 }

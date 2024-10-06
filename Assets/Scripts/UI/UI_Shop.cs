@@ -36,7 +36,6 @@ public class UI_Shop : MonoBehaviour
 
 
 
-
     private void Start()
     {
         InstantiatePlayerButton();
@@ -46,8 +45,7 @@ public class UI_Shop : MonoBehaviour
         informationText.text = "Click to Buy";
     }
 
-
-
+    #region Instantiate Buttons
     private void InstantiatePlatformButton()
     {
         for (int i = 0; i < platformColor.Length; i++)
@@ -66,7 +64,6 @@ public class UI_Shop : MonoBehaviour
 
             if (isSold)//if item is sold, still instantiate the buttons, but make them not interactable
                 ItemSold(newButton, index, type);
-
         }
     }
 
@@ -88,13 +85,12 @@ public class UI_Shop : MonoBehaviour
             //if item is sold, still instantiate the buttons, but make them not interactable
             if (isSold)
                 ItemSold(newButton, index, type);
-
-
         }
     }
 
+    #endregion
 
-
+    
     private void BuyPlatformHeadColor(int colorPrice, GameObject newButton, int index, string type)
     {
         int totalCoins = SaveManager.LoadTotalCoins();

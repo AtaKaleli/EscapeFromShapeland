@@ -3944,8 +3944,8 @@ MonoBehaviour:
     color: {r: 1, g: 0.43925616, b: 0, a: 1}
   - price: 100
     color: {r: 1, g: 0.9108132, b: 0, a: 1}
-  playerColorButton: {fileID: 1971457606430069439, guid: 8fe3b2e12e798974a96acdc3f5c6d2ca, type: 3}
-  platformColorButton: {fileID: 5407553908436257373, guid: 892725b2bd76c064481753f6823003bf, type: 3}
+  playerColorButton: {fileID: 441938860806889330, guid: 15118a8c4261bca43b69b058b3d0bd55, type: 3}
+  platformColorButton: {fileID: 2202890750352270780, guid: a8b41a6c09fa0ac47ad9e7b56b3e9763, type: 3}
   playerButtonParent: {fileID: 1376263839}
   platformButtonParent: {fileID: 307376110}
   playerPreview: {fileID: 1862920010}

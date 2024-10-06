@@ -10,11 +10,6 @@ public class UI_Inventory : MonoBehaviour
     public ShopInformation[] playerColor;
     public ShopInformation[] platformColor;
 
-
-    [Header("Shop - Text")]
-
-
-
     [Header("Shop - Button")]
     [SerializeField] private GameObject playerColorButton;
     [SerializeField] private GameObject platformColorButton;
@@ -47,6 +42,8 @@ public class UI_Inventory : MonoBehaviour
         DeletePlayerButtons();
     }
 
+    #region Instantiate & Delete Buttons
+
     private void InstantiatePlatformButton()
     {
         for (int i = 0; i < platformColor.Length; i++)
@@ -68,23 +65,7 @@ public class UI_Inventory : MonoBehaviour
         }
     }
 
-    private void DeletePlatformButtons()
-    {
-        for (int i = 0; i < platformButtonParent.transform.childCount; i++)
-        {
-            Destroy(platformButtonParent.GetChild(i).gameObject);
-        }
-    }
-
-    private void DeletePlayerButtons()
-    {
-        for (int i = 0; i < playerButtonParent.transform.childCount; i++)
-        {
-            Destroy(playerButtonParent.GetChild(i).gameObject);
-        }
-    }
-
-    private void InstantiatePlayerButton()
+   private void InstantiatePlayerButton()
     {
         for (int i = 0; i < playerColor.Length; i++)
         {
@@ -104,6 +85,25 @@ public class UI_Inventory : MonoBehaviour
         }
     }
 
+    private void DeletePlatformButtons()
+    {
+        for (int i = 0; i < platformButtonParent.transform.childCount; i++)
+        {
+            Destroy(platformButtonParent.GetChild(i).gameObject);
+        }
+    }
+
+    private void DeletePlayerButtons()
+    {
+        for (int i = 0; i < playerButtonParent.transform.childCount; i++)
+        {
+            Destroy(playerButtonParent.GetChild(i).gameObject);
+        }
+    }
+
+    #endregion
+
+    #region Save Colors
     private void SetPlatformPreview(Color platformHeadColor)
     {
         platformPreview.color = platformHeadColor;
@@ -123,7 +123,7 @@ public class UI_Inventory : MonoBehaviour
         SaveManager.SavePlayerSkinColor(255, 255, 255);
         SaveManager.SavePlatformHeadColor(0, 255, 78);
     }
-
+    #endregion
 
 
 
