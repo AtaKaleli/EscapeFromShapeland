@@ -3,10 +3,6 @@ using UnityEngine.UI;
 
 
 
-
-
-
-
 public class UI_Inventory : MonoBehaviour
 {
     [Header("Shop - Item")]
@@ -29,16 +25,26 @@ public class UI_Inventory : MonoBehaviour
     [SerializeField] private Image playerPreview;
     [SerializeField] private Image platformPreview;
 
+    [Header("Color Data")]
+    [SerializeField] private SpriteRenderer playerSr;
 
     private void Start()
     {
+        platformPreview.color = SaveManager.LoadPlatformHeadColor();
+        playerPreview.color = SaveManager.LoadPlayerSkinColor();
+    }
+
+    private void OnEnable()
+    {
         InstantiatePlayerButton();
         InstantiatePlatformButton();
+    }
 
-
-
-
-
+    private void OnDisable()
+    {
+        playerSr.color = SaveManager.LoadPlayerSkinColor();
+        DeletePlatformButtons();
+        DeletePlayerButtons();
     }
 
     private void InstantiatePlatformButton()
@@ -57,11 +63,24 @@ public class UI_Inventory : MonoBehaviour
 
             GameObject newButton = Instantiate(platformColorButton, platformButtonParent);
 
-            newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, platformHeadColor, index, type);
+            newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, platformHeadColor);
             newButton.GetComponent<Button>().onClick.AddListener(() => SetPlatformPreview(platformHeadColor));
+        }
+    }
 
+    private void DeletePlatformButtons()
+    {
+        for (int i = 0; i < platformButtonParent.transform.childCount; i++)
+        {
+            Destroy(platformButtonParent.GetChild(i).gameObject);
+        }
+    }
 
-
+    private void DeletePlayerButtons()
+    {
+        for (int i = 0; i < playerButtonParent.transform.childCount; i++)
+        {
+            Destroy(playerButtonParent.GetChild(i).gameObject);
         }
     }
 
@@ -80,31 +99,29 @@ public class UI_Inventory : MonoBehaviour
                 continue;
 
             GameObject newButton = Instantiate(playerColorButton, playerButtonParent);
-            newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, playerSkinColor, index, type);
+            newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, playerSkinColor);
             newButton.GetComponent<Button>().onClick.AddListener(() => SetPlayerPreview(playerSkinColor));
-
-
-
-
         }
     }
-
-
 
     private void SetPlatformPreview(Color platformHeadColor)
     {
         platformPreview.color = platformHeadColor;
+        SaveManager.SavePlatformHeadColor(platformHeadColor.r, platformHeadColor.g, platformHeadColor.b);
     }
 
     private void SetPlayerPreview(Color playerSkinColor)
     {
         playerPreview.color = playerSkinColor;
+        SaveManager.SavePlayerSkinColor(playerSkinColor.r, playerSkinColor.g, playerSkinColor.b);
     }
 
     public void SetDefaultColor()
     {
-        playerPreview.color = new Color(255, 255, 255, 255); //DEFAULT COLOR FOR PLAYER
-        platformPreview.color = new Color(0, 255, 78, 255); //DEFAULT COLOR FOR PLATFORM HEAD
+        playerPreview.color = new Color(255, 255, 255); //DEFAULT COLOR FOR PLAYER
+        platformPreview.color = new Color(0, 255, 78); //DEFAULT COLOR FOR PLATFORM HEAD
+        SaveManager.SavePlayerSkinColor(255, 255, 255);
+        SaveManager.SavePlatformHeadColor(0, 255, 78);
     }
 
 

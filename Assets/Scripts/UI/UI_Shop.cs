@@ -62,7 +62,7 @@ public class UI_Shop : MonoBehaviour
             
 
             GameObject newButton = Instantiate(platformColorButton, platformButtonParent);
-            newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, platformHeadColor, index, type);
+            newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, platformHeadColor);
             newButton.GetComponent<Button>().onClick.AddListener(() => BuyPlatformHeadColor(colorPrice, newButton, index, type));
 
             if (isSold)//if item is sold, still instantiate the buttons, but make them not interactable
@@ -83,7 +83,7 @@ public class UI_Shop : MonoBehaviour
             bool isSold = PlayerPrefs.GetInt(type + index, 0) == 1;
 
             GameObject newButton = Instantiate(playerColorButton, playerButtonParent);
-            newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, playerSkinColor, index, type);
+            newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, playerSkinColor);
             newButton.GetComponent<Button>().onClick.AddListener(() => BuyPlayerSkinColor(colorPrice, newButton, index, type));
 
             //if item is sold, still instantiate the buttons, but make them not interactable
@@ -102,7 +102,7 @@ public class UI_Shop : MonoBehaviour
 
         int totalCoins = SaveManager.LoadTotalCoins();
 
-        if (totalCoins > colorPrice)
+        if (totalCoins >= colorPrice)
         {
             StartCoroutine(InformationTextCouroutine("Successfully Purchased!"));
             ItemSold(newButton, index, type);
@@ -118,7 +118,7 @@ public class UI_Shop : MonoBehaviour
 
         int totalCoins = SaveManager.LoadTotalCoins();
 
-        if (totalCoins > colorPrice)
+        if (totalCoins >= colorPrice)
         {
             StartCoroutine(InformationTextCouroutine("Successfully Purchased!"));
             ItemSold(newButton, index, type);
@@ -138,7 +138,6 @@ public class UI_Shop : MonoBehaviour
     {
         newButton.GetComponent<Button>().interactable = false;
         newButton.GetComponent<UI_ShopButton>().soldImage.SetActive(true);
-        newButton.GetComponent<UI_ShopButton>().isAvailable = false;
         PlayerPrefs.SetInt(type + index, 1);
 
     }

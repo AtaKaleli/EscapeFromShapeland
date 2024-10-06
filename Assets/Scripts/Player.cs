@@ -82,7 +82,9 @@ public class Player : MonoBehaviour
     //UI Information
     [SerializeField] private GameObject endGameUI;
 
-    void Start()
+
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -91,6 +93,10 @@ public class Player : MonoBehaviour
         isDead = false;
         defaultMoveSpeed = 8f;
         defaultMilestoneDistance = 100f;
+    }
+    void Start()
+    {
+        sr.color = SaveManager.LoadPlayerSkinColor(); 
     }
 
     void Update()

@@ -14,9 +14,6 @@ public class UI_ShopPreview : MonoBehaviour
     public ShopInformation[] playerColor;
     public ShopInformation[] platformColor;
 
-    [Header("Shop - Text")]
-    [SerializeField] private TextMeshProUGUI informationText;
-
     [Header("Shop - Button")]
     [SerializeField] private GameObject playerColorButton;
     [SerializeField] private GameObject platformColorButton;
@@ -31,8 +28,6 @@ public class UI_ShopPreview : MonoBehaviour
     {
         InstantiatePlayerButton();
         InstantiatePlatformButton();
-
-        informationText.text = "Preview";
     }
 
     private void InstantiatePlatformButton()
@@ -41,12 +36,10 @@ public class UI_ShopPreview : MonoBehaviour
         {
             int colorPrice = platformColor[i].price;
             Color platformHeadColor = platformColor[i].color;
-            var index = i;
-            string type = "PlatformHead";
 
             GameObject newButton = Instantiate(platformColorButton, platformButtonParent);
 
-            newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, platformHeadColor, index, type);
+            newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, platformHeadColor);
             newButton.GetComponent<Button>().onClick.AddListener(() => SetPlatformPreview(platformHeadColor));
         }
     }
@@ -57,18 +50,13 @@ public class UI_ShopPreview : MonoBehaviour
         {
             int colorPrice = playerColor[i].price;
             Color playerSkinColor = playerColor[i].color;
-            var index = i;
-            string type = "PlayerSkin";
-
+           
             GameObject newButton = Instantiate(playerColorButton, playerButtonParent);
 
-            newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, playerSkinColor, index, type);
+            newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, playerSkinColor);
             newButton.GetComponent<Button>().onClick.AddListener(() => SetPlayerPreview(playerSkinColor));
-
         }
     }
-
-
 
     private void SetPlatformPreview(Color platformHeadColor)
     {

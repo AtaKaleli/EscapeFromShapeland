@@ -21,7 +21,7 @@ public class PlatformController : MonoBehaviour
     {
         if(collision.GetComponent<Player>() != null)
         {
-            headerSr.color = GameManager.instance.platformHeadColor;
+            headerSr.color = SaveManager.LoadPlatformHeadColor();
         }
     }
 

@@ -33,4 +33,39 @@ public static class SaveManager
     {
         return PlayerPrefs.GetInt("TotalCoins", 0);
     }
+
+    public static void SavePlayerSkinColor(float r, float g, float b)
+    {
+        PlayerPrefs.SetFloat("playerR", r);
+        PlayerPrefs.SetFloat("playerG", g);
+        PlayerPrefs.SetFloat("playerB", b);
+    }
+
+    public static Color LoadPlayerSkinColor()
+    {
+        float r = PlayerPrefs.GetFloat("playerR", 1);
+        float g = PlayerPrefs.GetFloat("playerG", 1);
+        float b = PlayerPrefs.GetFloat("playerB", 1);
+        
+        return new Color(r, g, b);
+
+    }
+
+    public static void SavePlatformHeadColor(float r, float g, float b)
+    {
+        PlayerPrefs.SetFloat("platformR", r);
+        PlayerPrefs.SetFloat("platformG", g);
+        PlayerPrefs.SetFloat("platformB", b);
+    }
+
+    public static Color LoadPlatformHeadColor()
+    {
+        float r = PlayerPrefs.GetFloat("platformR", 0);
+        float g = PlayerPrefs.GetFloat("platformG", 1);
+        float b = PlayerPrefs.GetFloat("platformB", 0.3f);
+
+        return new Color(r, g, b);
+
+    }
+
 }

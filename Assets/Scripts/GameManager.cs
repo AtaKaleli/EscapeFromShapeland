@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
- 
+    
 
     private bool isGameStarted;
     private bool isGamePaused;
@@ -22,12 +22,6 @@ public class GameManager : MonoBehaviour
     public bool GameStarted { get { return isGameStarted; } set { isGameStarted = value; } }
 
 
-    [Header("Game Color Data")]
-    public Color platformHeadColor;
-    public Color playerSkinColor;
-
-
-    
 
 
     private void Awake()
@@ -38,6 +32,10 @@ public class GameManager : MonoBehaviour
             Destroy(this);
     }
 
+    private void Start()
+    {
+        //SaveManager.SaveTotalCoins(90);
+    }
 
     public void UpdateData(float newScore, int coins)
     {
