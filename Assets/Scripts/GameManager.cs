@@ -34,7 +34,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //SaveManager.SaveTotalCoins(90);
+       // SaveManager.SaveTotalCoins(190);
+        
     }
 
     public void UpdateData(float newScore, int coins)

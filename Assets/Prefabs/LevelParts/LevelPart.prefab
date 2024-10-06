@@ -225,6 +225,7 @@ MonoBehaviour:
   sr: {fileID: 6653471327855052562}
   headerSr: {fileID: 3159826822373749649}
   platformHeader: {fileID: 5388197399613061341}
+  isFirstPlatform: 0
 --- !u!1 &7051708982945277118
 GameObject:
   m_ObjectHideFlags: 0

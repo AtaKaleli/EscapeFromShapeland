@@ -21,6 +21,7 @@ public class LevelGenerator : MonoBehaviour
     void Start()
     {
         playerTransform = player.transform;
+        
     }
 
     // Update is called once per frame

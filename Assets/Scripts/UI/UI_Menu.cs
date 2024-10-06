@@ -9,7 +9,7 @@ public class UI_Menu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bestScoreText;
     [SerializeField] private TextMeshProUGUI totalCoinsText;
 
-    private void Start()
+    private void OnEnable()
     {
         DisplayInfo();
     }

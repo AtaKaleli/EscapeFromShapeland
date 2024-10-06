@@ -44,10 +44,9 @@ public class UI_Shop : MonoBehaviour
 
         totalCoinsText.text = SaveManager.LoadTotalCoins().ToString("0");
         informationText.text = "Click to Buy";
-
-
-
     }
+
+
 
     private void InstantiatePlatformButton()
     {
@@ -98,15 +97,13 @@ public class UI_Shop : MonoBehaviour
 
     private void BuyPlatformHeadColor(int colorPrice, GameObject newButton, int index, string type)
     {
-
-
         int totalCoins = SaveManager.LoadTotalCoins();
 
         if (totalCoins >= colorPrice)
         {
-            StartCoroutine(InformationTextCouroutine("Successfully Purchased!"));
             ItemSold(newButton, index, type);
-
+            UpdateTotalCoins(totalCoins, colorPrice);
+            StartCoroutine(InformationTextCouroutine("Successfully Purchased!"));
         }
         else
             StartCoroutine(InformationTextCouroutine("Not Enough Coins!"));
@@ -114,19 +111,17 @@ public class UI_Shop : MonoBehaviour
 
     private void BuyPlayerSkinColor(int colorPrice, GameObject newButton, int index, string type)
     {
-
-
         int totalCoins = SaveManager.LoadTotalCoins();
 
         if (totalCoins >= colorPrice)
         {
-            StartCoroutine(InformationTextCouroutine("Successfully Purchased!"));
             ItemSold(newButton, index, type);
+            UpdateTotalCoins(totalCoins, colorPrice);
+            StartCoroutine(InformationTextCouroutine("Successfully Purchased!"));
         }
         else
             StartCoroutine(InformationTextCouroutine("Not Enough Coins!"));
     }
-
 
     private IEnumerator InformationTextCouroutine(string text)
     {
@@ -134,12 +129,19 @@ public class UI_Shop : MonoBehaviour
         yield return new WaitForSeconds(1f);
         informationText.text = "Click to Buy";
     }
+
     private void ItemSold(GameObject newButton, int index, string type)
     {
         newButton.GetComponent<Button>().interactable = false;
         newButton.GetComponent<UI_ShopButton>().soldImage.SetActive(true);
         PlayerPrefs.SetInt(type + index, 1);
-
+    }
+    
+    private void UpdateTotalCoins(int totalCoins,int colorPrice)
+    {
+        totalCoins -= colorPrice;
+        SaveManager.SaveTotalCoins(totalCoins);
+        totalCoinsText.text = SaveManager.LoadTotalCoins().ToString("0");
     }
     
     
