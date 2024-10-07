@@ -429,7 +429,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 211605216}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &43368992
 AudioSource:
@@ -1478,13 +1478,13 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1294986397}
-  - {fileID: 231897757}
   - {fileID: 561764768}
+  - {fileID: 1413282602}
+  - {fileID: 231897757}
   - {fileID: 507246888}
   - {fileID: 770554369}
   - {fileID: 43368991}
   - {fileID: 1239340084}
-  - {fileID: 1413282602}
   - {fileID: 1248634740}
   - {fileID: 221824794}
   m_Father: {fileID: 1986884184}
@@ -1724,7 +1724,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 211605216}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &231897758
 AudioSource:
@@ -3930,7 +3930,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 211605216}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &507246889
 AudioSource:
@@ -4389,7 +4389,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 211605216}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &561764769
 AudioSource:
@@ -5626,7 +5626,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 211605216}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &770554370
 AudioSource:
@@ -9981,7 +9981,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 211605216}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1239340085
 AudioSource:
@@ -11294,7 +11294,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 211605216}
-  m_RootOrder: 7
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1413282603
 AudioSource:
@@ -16159,6 +16159,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee10d15bd7ee934291df007528a96f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bgm:
+  - {fileID: 1597348265}
+  - {fileID: 1833751456}
+  - {fileID: 1934901748}
+  sfx:
+  - {fileID: 1294986398}
+  - {fileID: 231897758}
+  - {fileID: 561764769}
+  - {fileID: 507246889}
+  - {fileID: 770554370}
+  - {fileID: 43368992}
+  - {fileID: 1239340085}
+  - {fileID: 1413282603}
+  - {fileID: 1248634741}
+  - {fileID: 221824795}
 --- !u!1 &1989989615
 GameObject:
   m_ObjectHideFlags: 0
