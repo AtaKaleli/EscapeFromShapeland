@@ -106,18 +106,21 @@ public class UI_Inventory : MonoBehaviour
     #region Save Colors
     private void SetPlatformPreview(Color platformHeadColor)
     {
+        AudioManager.instance.PlaySfx(5);
         platformPreview.color = platformHeadColor;
         SaveManager.SavePlatformHeadColor(platformHeadColor.r, platformHeadColor.g, platformHeadColor.b);
     }
 
     private void SetPlayerPreview(Color playerSkinColor)
     {
+        AudioManager.instance.PlaySfx(5);
         playerPreview.color = playerSkinColor;
         SaveManager.SavePlayerSkinColor(playerSkinColor.r, playerSkinColor.g, playerSkinColor.b);
     }
 
     public void SetDefaultColor()
     {
+        AudioManager.instance.PlaySfx(5);
         playerPreview.color = new Color(255, 255, 255); //DEFAULT COLOR FOR PLAYER
         platformPreview.color = new Color(0, 255, 78); //DEFAULT COLOR FOR PLATFORM HEAD
         SaveManager.SavePlayerSkinColor(255, 255, 255);

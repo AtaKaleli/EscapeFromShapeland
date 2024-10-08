@@ -73,10 +73,10 @@ public class Player : MonoBehaviour
     [SerializeField] private Vector2 knockbackDirection;
     private bool isKnocked;
     private bool canBeKnocked = true;
-    
+
 
     //Player Die Information
-    private bool isDead;
+    [HideInInspector] public bool isDead;
     [HideInInspector] public bool hasExtraLife;
 
     //UI Information
@@ -177,10 +177,11 @@ public class Player : MonoBehaviour
         if (isGrounded || cayoteJumpCounter > 0)
         {
             Jump(1f);
+            AudioManager.instance.PlaySfx(6);
         }
         else if (canDoubleJump)
         {
-
+            AudioManager.instance.PlaySfx(2);
             canDoubleJump = false;
             Jump(.8f);
         }
@@ -213,6 +214,7 @@ public class Player : MonoBehaviour
 
         if (canSlide && isGrounded)
         {
+            AudioManager.instance.PlaySfx(11);
             slideTimeCounter = slideTime;
             isSliding = true;
             canSlide = false;
@@ -237,6 +239,8 @@ public class Player : MonoBehaviour
     {
         if(isLedgeDetected && canGrabLedge)
         {
+            
+            AudioManager.instance.PlaySfx(12);
             canGrabLedge = false;
 
             Vector2 ledgePosition = GetComponentInChildren<LedgeDetection>().transform.position;
@@ -247,7 +251,10 @@ public class Player : MonoBehaviour
             canClimb = true;
         }
         if (canClimb)
+        {
+            
             transform.position = climbBegunPosition;
+        }
     }
 
     private void LedgeCheckOver()
@@ -271,6 +278,7 @@ public class Player : MonoBehaviour
         
         if (moveSpeed == maxMoveSpeed)
         {
+            
             hasExtraLife = true;
             return;
         }
@@ -281,8 +289,11 @@ public class Player : MonoBehaviour
             tempDistance *= distanceMultiplier;
             moveSpeed *= speedMultiplier;
             
-            if (moveSpeed > maxMoveSpeed)
+            if (moveSpeed >= maxMoveSpeed)
+            {
+                AudioManager.instance.PlaySfx(4);
                 moveSpeed = maxMoveSpeed;
+            }
         }
     }
 
@@ -301,6 +312,7 @@ public class Player : MonoBehaviour
     {
         if (rb.velocity.y < -25f && isGrounded)
         {
+            AudioManager.instance.PlaySfx(13);
             isRolling = true;
         }
     }
@@ -317,22 +329,30 @@ public class Player : MonoBehaviour
     {
         if (hasExtraLife)
         {
+            AudioManager.instance.PlaySfx(3);
             SlowDownController();
             Knockback();
             hasExtraLife = false;
         }
         else
+        {
+            
             Die();
+        }
     }
 
     private void Die()
     {
-        if(canBeKnocked)
+        if (canBeKnocked)
+        {
+            AudioManager.instance.PlaySfx(7);
             StartCoroutine(DieCouroutine());
+        }
     }
 
     private IEnumerator DieCouroutine()
     {
+        AudioManager.instance.StopBgm();
         isDead = true;
         rb.velocity = knockbackDirection;
         yield return new WaitForSeconds(1f);

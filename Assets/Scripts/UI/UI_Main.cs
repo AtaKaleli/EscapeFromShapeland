@@ -43,7 +43,7 @@ public class UI_Main : MonoBehaviour
         {
             uiElements[i].SetActive(false);
         }
-
+        AudioManager.instance.PlaySfx(8);
         uiToOpen.SetActive(true);
     }
 

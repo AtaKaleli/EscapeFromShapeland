@@ -59,11 +59,13 @@ public class UI_ShopPreview : MonoBehaviour
     #region Preview Buttons
     private void SetPlatformPreview(Color platformHeadColor)
     {
+        AudioManager.instance.PlaySfx(9);
         platformPreview.color = platformHeadColor;
     }
 
     private void SetPlayerPreview(Color playerSkinColor)
     {
+        AudioManager.instance.PlaySfx(9);
         playerPreview.color = playerSkinColor;
     }
     #endregion

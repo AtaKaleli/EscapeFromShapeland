@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource[] bgm;
     [SerializeField] private AudioSource[] sfx;
 
+    [SerializeField] private Player player;
 
     private void Awake()
     {
@@ -34,7 +35,8 @@ public class AudioManager : MonoBehaviour
                 return;
         }
 
-        PlayRandomBgm();
+        if(!player.isDead)
+            PlayRandomBgm();
     }
 
     private void PlayRandomBgm()
@@ -51,26 +53,34 @@ public class AudioManager : MonoBehaviour
         bgm[index].Play();
     }
 
-    private void PlaySfx(int index)
+    public void PlaySfx(int index, bool randomPitch = false)
     {
+        
+
         if (sfx.Length == 0 || index >= sfx.Length)
             print("No SFX to play!");
-
+        
+        if (randomPitch)
+            sfx[index].pitch = Random.Range(0.7f, 1.1f);
+        
         sfx[index].Play();
+        
     }
 
     #region Stop
-    /*
-    private void StopBgm(int index)
+    
+    public void StopBgm()
     {
-        if (bgm[index].isPlaying)
-            bgm[index].Stop();
+        for (int i = 0; i < bgm.Length; i++)
+        {
+            bgm[i].Stop();
+        }
     }
 
-    private void StopSfx(int index)
+    public void StopSfx(int index)
     {
         sfx[index].Stop();
     }
-    */
+    
     #endregion  
 }
