@@ -23,6 +23,8 @@ public class UI_Inventory : MonoBehaviour
     [Header("Color Data")]
     [SerializeField] private SpriteRenderer playerSr;
 
+
+
     private void Start()
     {
         platformPreview.color = SaveManager.LoadPlatformHeadColor();

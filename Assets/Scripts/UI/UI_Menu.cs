@@ -5,9 +5,22 @@ using UnityEngine;
 
 public class UI_Menu : MonoBehaviour
 {
+    [Header("Stats")]
     [SerializeField] private TextMeshProUGUI lastScoreText;
     [SerializeField] private TextMeshProUGUI bestScoreText;
     [SerializeField] private TextMeshProUGUI totalCoinsText;
+
+    [Header("Volume Settings")]
+    [SerializeField] private UI_Settings bgmVolumeSetting;
+    [SerializeField] private UI_Settings sfxVolumeSetting;
+
+
+    
+    private void Start()
+    {
+        LoadVolumeSettings();
+    }
+
 
     private void OnEnable()
     {
@@ -25,6 +38,11 @@ public class UI_Menu : MonoBehaviour
     {
         UI_Main.instance.SwitchToUI(ingameUI);
         GameManager.instance.GameStarted = true;
+    }
+    private void LoadVolumeSettings()
+    {
+        bgmVolumeSetting.SetupBGMVolumeSlider();
+        sfxVolumeSetting.SetupSFXVolumeSlider();
     }
 
    
