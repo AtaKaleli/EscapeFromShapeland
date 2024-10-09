@@ -19,7 +19,6 @@ public class ParallaxEffect : MonoBehaviour
         cam = GameObject.Find("Main Camera");
 
         length = GetComponent<SpriteRenderer>().bounds.size.x;
-        print(length);
         xPosition = transform.position.x;
     }
 

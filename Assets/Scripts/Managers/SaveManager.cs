@@ -96,4 +96,14 @@ public static class SaveManager
         return PlayerPrefs.GetFloat("SFXValue", 1f);
     }
 
+    public static void SaveBackground(int id,int value)
+    {
+        PlayerPrefs.SetInt("Background" + id, value);
+    }
+
+    public static int LoadBackground(int id)
+    {
+        return PlayerPrefs.GetInt("Background" + id, 0);
+    }
+
 }

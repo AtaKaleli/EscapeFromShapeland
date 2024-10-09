@@ -11,14 +11,14 @@ public class UI_Menu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI totalCoinsText;
 
     [Header("Volume Settings")]
-    [SerializeField] private UI_Settings bgmVolumeSetting;
-    [SerializeField] private UI_Settings sfxVolumeSetting;
+    [SerializeField] private UI_Settings settings;
+    
 
 
     
     private void Start()
     {
-        LoadVolumeSettings();
+        LoadSettings();
     }
 
 
@@ -39,10 +39,11 @@ public class UI_Menu : MonoBehaviour
         UI_Main.instance.SwitchToUI(ingameUI);
         GameManager.instance.GameStarted = true;
     }
-    private void LoadVolumeSettings()
+    private void LoadSettings()
     {
-        bgmVolumeSetting.SetupBGMVolumeSlider();
-        sfxVolumeSetting.SetupSFXVolumeSlider();
+        settings.SetupBGMVolumeSlider();
+        settings.SetupSFXVolumeSlider();
+        settings.SetupBackground();
     }
 
    

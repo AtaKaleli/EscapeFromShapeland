@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -16,9 +15,16 @@ public class UI_Settings : MonoBehaviour
     [Header("Sound Effects Settings")]
     [SerializeField] private Slider sfxSlider;
     [SerializeField] private string sfxParameter;
-    
+
+    [Header("Background Selection")]
+    [SerializeField] private CinemachineConfiner2D virtualCamera;
+    [SerializeField] private GameObject[] backgrounds;
+
+    private int currentBackgroundId = 0;
 
 
+
+    #region Volume Settings
     public void SetupSFXVolumeSlider()
     {
         sfxSlider.onValueChanged.AddListener(SFXSliderValue);
@@ -31,7 +37,7 @@ public class UI_Settings : MonoBehaviour
         bgmSlider.onValueChanged.AddListener(BGMSliderValue);
         bgmSlider.minValue = 0.001f;
         bgmSlider.value = SaveManager.LoadBGMValue();
-       
+
     }
 
     private void SFXSliderValue(float value)
@@ -44,13 +50,47 @@ public class UI_Settings : MonoBehaviour
     {
         float newValue = Mathf.Log10(value) * mixerMultiplier;
         audioMixer.SetFloat(bgmParameter, newValue);
-        
+
     }
 
     private void OnDisable()
     {
         SaveManager.SaveBGMValue(bgmSlider.value);
         SaveManager.SaveSFXValue(sfxSlider.value);
-        
     }
+
+    #endregion
+
+    #region Background Selection
+
+    public void SetupBackground()
+    {
+        for (int i = 0; i < backgrounds.Length; i++)
+        {
+            if (SaveManager.LoadBackground(i) == 1)
+            {
+                currentBackgroundId = i;
+                break;
+            }
+        }
+
+        SelectBackground(currentBackgroundId);
+    }
+
+    public void SelectBackground(int id)
+    {
+
+        for (int i = 0; i < backgrounds.Length; i++)
+        {
+            backgrounds[i].SetActive(false);
+            SaveManager.SaveBackground(i, 0);
+        }
+
+        backgrounds[id].SetActive(true);
+        SaveManager.SaveBackground(id, 1);
+
+        PolygonCollider2D colliderHolder = backgrounds[id].transform.GetChild(0).GetComponent<PolygonCollider2D>();
+        virtualCamera.m_BoundingShape2D = colliderHolder;
+    }
+    #endregion
 }
