@@ -23,14 +23,14 @@ public class UI_Settings : MonoBehaviour
     {
         sfxSlider.onValueChanged.AddListener(SFXSliderValue);
         sfxSlider.minValue = 0.001f;
-        sfxSlider.value = PlayerPrefs.GetFloat("SFXValue", 1f);
+        sfxSlider.value = SaveManager.LoadSFXValue();
     }
 
     public void SetupBGMVolumeSlider()
     {
         bgmSlider.onValueChanged.AddListener(BGMSliderValue);
         bgmSlider.minValue = 0.001f;
-        bgmSlider.value = PlayerPrefs.GetFloat("BGMValue", 1f);
+        bgmSlider.value = SaveManager.LoadBGMValue();
        
     }
 
@@ -49,7 +49,8 @@ public class UI_Settings : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerPrefs.SetFloat("BGMValue", bgmSlider.value);
-        PlayerPrefs.SetFloat("SFXValue", sfxSlider.value);
+        SaveManager.SaveBGMValue(bgmSlider.value);
+        SaveManager.SaveSFXValue(sfxSlider.value);
+        
     }
 }

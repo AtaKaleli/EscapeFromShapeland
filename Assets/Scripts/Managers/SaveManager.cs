@@ -48,7 +48,6 @@ public static class SaveManager
         float b = PlayerPrefs.GetFloat("playerB", 1);
         
         return new Color(r, g, b);
-
     }
 
     public static void SavePlatformHeadColor(float r, float g, float b)
@@ -65,7 +64,36 @@ public static class SaveManager
         float b = PlayerPrefs.GetFloat("platformB", 0.3f);
 
         return new Color(r, g, b);
+    }
 
+    public static void SaveSoldItem(int index, string type)
+    {
+        PlayerPrefs.SetInt(type + index, 1);
+    }
+
+    public static int LoadSoldItem(int index, string type)
+    {
+        return PlayerPrefs.GetInt(type + index, 0);
+    }
+
+    public static void SaveBGMValue(float value)
+    {
+        PlayerPrefs.SetFloat("BGMValue", value);
+    }
+
+    public static float LoadBGMValue()
+    {
+        return PlayerPrefs.GetFloat("BGMValue", 1f);
+    }
+
+    public static void SaveSFXValue(float value)
+    {
+        PlayerPrefs.SetFloat("SFXValue", value);
+    }
+
+    public static float LoadSFXValue()
+    {
+        return PlayerPrefs.GetFloat("SFXValue", 1f);
     }
 
 }

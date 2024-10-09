@@ -76,7 +76,7 @@ public class UI_Inventory : MonoBehaviour
             var index = i;
             string type = "PlayerSkin";
 
-            bool isSold = PlayerPrefs.GetInt(type + index, 0) == 1;
+            bool isSold = SaveManager.LoadSoldItem(index, type) == 1;
 
             if (!isSold)
                 continue;

@@ -55,7 +55,7 @@ public class UI_Shop : MonoBehaviour
             var index = i;
             string type = "PlatformHead";
 
-            bool isSold = PlayerPrefs.GetInt(type + index, 0) == 1;
+            bool isSold = SaveManager.LoadSoldItem(index,type) == 1;
 
 
             GameObject newButton = Instantiate(platformColorButton, platformButtonParent);
@@ -76,7 +76,7 @@ public class UI_Shop : MonoBehaviour
             var index = i;
             string type = "PlayerSkin";
 
-            bool isSold = PlayerPrefs.GetInt(type + index, 0) == 1;
+            bool isSold = SaveManager.LoadSoldItem(index, type) == 1;
 
             GameObject newButton = Instantiate(playerColorButton, playerButtonParent);
             newButton.GetComponent<UI_ShopButton>().SetupButton(colorPrice, playerSkinColor);
@@ -90,7 +90,6 @@ public class UI_Shop : MonoBehaviour
 
     #endregion
 
-
     private void BuyPlatformHeadColor(int colorPrice, GameObject newButton, int index, string type)
     {
         int totalCoins = SaveManager.LoadTotalCoins();
@@ -101,7 +100,6 @@ public class UI_Shop : MonoBehaviour
             ItemSold(newButton, index, type);
             UpdateTotalCoins(totalCoins, colorPrice);
             StartCoroutine(InformationTextCouroutine("Successfully Purchased!"));
-            
         }
         else
         {
@@ -121,7 +119,6 @@ public class UI_Shop : MonoBehaviour
             ItemSold(newButton, index, type);
             UpdateTotalCoins(totalCoins, colorPrice);
             StartCoroutine(InformationTextCouroutine("Successfully Purchased!"));
-            
         }
         else
         {
@@ -141,7 +138,7 @@ public class UI_Shop : MonoBehaviour
     {
         newButton.GetComponent<Button>().interactable = false;
         newButton.GetComponent<UI_ShopButton>().soldImage.SetActive(true);
-        PlayerPrefs.SetInt(type + index, 1);
+        SaveManager.SaveSoldItem(index, type);
         
     }
 
