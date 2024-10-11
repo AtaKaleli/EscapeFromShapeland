@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
     private float slideTimeCounter;
     [SerializeField] private float upperGroundCheckDistance;
     private bool isUpperGrounded;
-    private bool isSliding;
+    [HideInInspector] public bool isSliding;
     [HideInInspector] public bool canSlide = true;
 
 
