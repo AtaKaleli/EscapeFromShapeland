@@ -371,9 +371,11 @@ public class Player : MonoBehaviour
 
     private IEnumerator KnockbackCouroutine()
     {
-        Color normalColor = new Color(1, 1, 1, 1);
-        Color midAlphaColor = new Color(1, 1, 1, 0.75f);
-        Color lowAlphaColor = new Color(1, 1, 1, 0.25f);
+
+
+        Color normalColor = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
+        Color midAlphaColor = new Color(sr.color.r, sr.color.g, sr.color.b, 0.75f);
+        Color lowAlphaColor = new Color(sr.color.r, sr.color.g, sr.color.b, 0.25f);
 
         isKnocked = true;
         canBeKnocked = false;
