@@ -12,8 +12,9 @@ public class UI_Menu : MonoBehaviour
 
     [Header("Volume Settings")]
     [SerializeField] private UI_Settings settings;
-    
 
+    [Header("Tutorial")]
+    [SerializeField] private bool isTutorial;
 
     
     private void Start()
@@ -29,9 +30,12 @@ public class UI_Menu : MonoBehaviour
 
     private void DisplayInfo()
     {
-        lastScoreText.text = "Last Score: " + SaveManager.LoadLastScore().ToString("0");
-        bestScoreText.text = "Best Score: " + SaveManager.LoadBestScore().ToString("0");
-        totalCoinsText.text = SaveManager.LoadTotalCoins().ToString("0");
+        if(!isTutorial)
+        {
+            lastScoreText.text = "Last Score: " + SaveManager.LoadLastScore().ToString("0");
+            bestScoreText.text = "Best Score: " + SaveManager.LoadBestScore().ToString("0");
+            totalCoinsText.text = SaveManager.LoadTotalCoins().ToString("0");
+        }
     }
 
     public void TapToStart(GameObject ingameUI)
@@ -41,9 +45,12 @@ public class UI_Menu : MonoBehaviour
     }
     private void LoadSettings()
     {
-        settings.SetupBGMVolumeSlider();
-        settings.SetupSFXVolumeSlider();
-        settings.SetupBackground();
+        if(settings != null)
+        {
+            settings.SetupBGMVolumeSlider();
+            settings.SetupSFXVolumeSlider();
+            settings.SetupBackground();
+        }
     }
 
    

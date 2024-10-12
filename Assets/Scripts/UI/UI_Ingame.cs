@@ -12,6 +12,8 @@ public class UI_Ingame : MonoBehaviour
     [SerializeField] private TextMeshProUGUI distanceText;
     [SerializeField] private TextMeshProUGUI coinsText;
 
+    [SerializeField] private bool isTutorial;
+
     private void Awake()
     {
         if (player == null)
@@ -27,10 +29,13 @@ public class UI_Ingame : MonoBehaviour
 
     private void UpdateInfo()
     {
-        distanceText.text = "Distance: " + player.transform.position.x.ToString("0");
-        coinsText.text = "Coins: " + GameManager.instance.Coins.ToString("0");
-        heartFullImage.SetActive(player.hasExtraLife);
-        slideReadyImage.SetActive(player.canSlide);
+        if (!isTutorial)
+        {
+            distanceText.text = "Distance: " + player.transform.position.x.ToString("0");
+            coinsText.text = "Coins: " + GameManager.instance.Coins.ToString("0");
+            heartFullImage.SetActive(player.hasExtraLife);
+            slideReadyImage.SetActive(player.canSlide);
+        }
     }
 
     public void PauseGame(GameObject pauseUI)
@@ -39,4 +44,8 @@ public class UI_Ingame : MonoBehaviour
         GameManager.instance.PauseGameButton();
     }
 
+    public void SkipTutorial()
+    {
+        GameManager.instance.RestartGame();
+    }
 }

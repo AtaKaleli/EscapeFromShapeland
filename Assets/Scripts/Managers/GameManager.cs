@@ -89,6 +89,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void RestartTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+    }
+
     public void RestartGame()
     {
         SceneManager.LoadScene("SampleScene");
