@@ -94,12 +94,12 @@ public class Player : MonoBehaviour
         defaultMoveSpeed = 8f;
         defaultMilestoneDistance = 100f;
     }
-    void Start()
+    private void Start()
     {
         sr.color = SaveManager.LoadPlayerSkinColor(); 
     }
 
-    void Update()
+    private void Update()
     {
 
         slideTimeCounter -= Time.deltaTime;

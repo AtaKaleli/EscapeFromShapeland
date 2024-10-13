@@ -8,6 +8,7 @@ public class LedgeDetection : MonoBehaviour
 {
 
     [SerializeField] private Player player;
+    [SerializeField] private PlayerAI playerAI;
     [SerializeField] private float ledgeCheckRadius;
     [SerializeField] private LayerMask whatIsGround;
 
@@ -16,8 +17,19 @@ public class LedgeDetection : MonoBehaviour
 
     private void Update()
     {
-        if (canDetectLedge && !player.isSliding)
-            player.isLedgeDetected = Physics2D.OverlapCircle(transform.position, ledgeCheckRadius, whatIsGround);
+        if(player != null)
+        {
+            
+            if (canDetectLedge && !player.isSliding)
+                player.isLedgeDetected = Physics2D.OverlapCircle(transform.position, ledgeCheckRadius, whatIsGround);
+
+        }
+        if(playerAI != null)
+        {
+            
+            if (canDetectLedge && !playerAI.isSliding)
+                playerAI.isLedgeDetected = Physics2D.OverlapCircle(transform.position, ledgeCheckRadius, whatIsGround);
+        }
         
     }
 
