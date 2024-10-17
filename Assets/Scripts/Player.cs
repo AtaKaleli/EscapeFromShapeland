@@ -317,7 +317,7 @@ public class Player : MonoBehaviour
     #region Roll 
     private void RollController()
     {
-        if (rb.velocity.y < -25f && isGrounded)
+        if (rb.velocity.y < -25f && isGrounded && canGrabLedge)
         {
             AudioManager.instance.PlaySfx(13);
             isRolling = true;
