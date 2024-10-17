@@ -12,6 +12,12 @@ public class Coin : MonoBehaviour
             GameManager.instance.Coins++;
             Destroy(gameObject);
         }
+
+        else if (collision.GetComponent<PlayerAI>() != null)
+        {
+            
+            Destroy(gameObject);
+        }
     }
 
 }

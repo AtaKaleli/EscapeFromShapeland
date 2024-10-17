@@ -10,13 +10,14 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
-
+    private TutorialManager tutorialManager;
     
 
     [Header("Player Inputs")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
     private bool canDoubleJump;
+    [HideInInspector] public bool canMove = true;
 
     [Header("Cayote Jump")]
     [SerializeField] private float cayoteJumpTime;
@@ -89,6 +90,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        tutorialManager = FindAnyObjectByType<TutorialManager>();
 
         isDead = false;
         defaultMoveSpeed = 8f;
@@ -108,7 +110,7 @@ public class Player : MonoBehaviour
        
 
         AnimationContoller();
-        InputChecks();
+        CollisionChecks();
         
         if (isDead || isKnocked)
             return;
@@ -119,13 +121,13 @@ public class Player : MonoBehaviour
 
        
         
+        InputChecks();
         AllowJumpAbilities();
         CancelSlideAbility();
         RollController();
         LedgeCheck();
         SpeedUpController();
         Move();
-        CollisionChecks();
     }
 
     
@@ -145,6 +147,9 @@ public class Player : MonoBehaviour
 
     private void InputChecks()
     {
+        if (!canMove)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             JumpController();
@@ -161,7 +166,9 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        if (!isWallDetected || isSliding)
+        if(!canMove)
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        else if (!isWallDetected || isSliding)
             rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
     }
 
@@ -441,4 +448,25 @@ public class Player : MonoBehaviour
         Gizmos.DrawLine(transform.position, new Vector2(transform.position.x, transform.position.y + upperGroundCheckDistance));
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "JumpPhaseTrigger")
+        {
+            
+            tutorialManager.SpawnPlayerAI();
+        }
+        else if (collision.tag == "DoubleJumpPhaseTrigger")
+        {
+            
+          
+        }
+        else if (collision.tag == "SlidePhaseTrigger")
+        {
+           
+        }
+        else if (collision.tag == "LedgeClimbPhaseTrigger")
+        {
+            
+        }
+    }
 }

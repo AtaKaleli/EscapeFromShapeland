@@ -50,7 +50,8 @@ public class PlayerAI : MonoBehaviour
 
     public bool canMove;
     private bool jumpToLedge = true;
-   
+
+    
 
     private void Start()
     {
@@ -232,18 +233,18 @@ public class PlayerAI : MonoBehaviour
     {
         if (collision.tag == "JumpPhase")
         {
-            print("1");
+          
             Jump(1f);
         }
         else if(collision.tag == "DoubleJumpPhase")
         {
-            print("2");
+            
             JumpController();
             Invoke("JumpController", .25f);
         }
         else if (collision.tag == "SlidePhase")
         {
-            print("3");
+            
             SlideController();
         }
         else if (collision.tag == "LedgeClimbPhase" && jumpToLedge)
