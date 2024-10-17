@@ -3038,7 +3038,7 @@ GameObject:
   m_Component:
   - component: {fileID: 964602729}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: doublejump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4157,7 +4157,7 @@ GameObject:
   - component: {fileID: 1587728388}
   m_Layer: 6
   m_Name: TutorialCollider
-  m_TagString: JumpPhaseTrigger
+  m_TagString: StartTutorial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5469,6 +5469,9 @@ MonoBehaviour:
   playerAIPref: {fileID: 3715318500592221551}
   tutorialCollider: {fileID: 1587728386}
   tutorialText: {fileID: 1640651793}
+  enterTutorialWaitTime: 1.5
+  executeTutorialWaitTime: 4
+  colliderOffsetX: 30
 --- !u!1 &1833751454
 GameObject:
   m_ObjectHideFlags: 0

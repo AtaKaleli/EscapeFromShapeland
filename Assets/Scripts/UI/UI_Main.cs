@@ -10,10 +10,9 @@ public class UI_Main : MonoBehaviour
     public static UI_Main instance;
     
     [SerializeField] private GameObject[] uiElements;
-    private UI_FadeEffect fadeEffect;
 
 
-    
+
     private void Awake()
     {
         Time.timeScale = 1;
@@ -22,9 +21,6 @@ public class UI_Main : MonoBehaviour
             instance = this;
         else
             Destroy(this);
-
-        
-
     }
 
     private void Start()
@@ -48,9 +44,4 @@ public class UI_Main : MonoBehaviour
         AudioManager.instance.PlaySfx(8);
         uiToOpen.SetActive(true);
     }
-
- 
-    
-
-
 }

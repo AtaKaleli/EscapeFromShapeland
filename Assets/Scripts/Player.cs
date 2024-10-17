@@ -1,8 +1,6 @@
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.Sequences;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class Player : MonoBehaviour
 {
@@ -96,6 +94,7 @@ public class Player : MonoBehaviour
         defaultMoveSpeed = 8f;
         defaultMilestoneDistance = 100f;
     }
+
     private void Start()
     {
         sr.color = SaveManager.LoadPlayerSkinColor(); 
@@ -433,6 +432,17 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    #region Tutorial
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "StartTutorial")
+        {
+            tutorialManager.SpawnPlayerAI();
+        }
+    }
+
+    #endregion
+
     private void CollisionChecks()
     {
         isGrounded = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
@@ -451,25 +461,5 @@ public class Player : MonoBehaviour
         Gizmos.DrawLine(transform.position, new Vector2(transform.position.x, transform.position.y + upperGroundCheckDistance));
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "JumpPhaseTrigger")
-        {
-            
-            tutorialManager.SpawnPlayerAI();
-        }
-        else if (collision.tag == "DoubleJumpPhaseTrigger")
-        {
-            
-          
-        }
-        else if (collision.tag == "SlidePhaseTrigger")
-        {
-           
-        }
-        else if (collision.tag == "LedgeClimbPhaseTrigger")
-        {
-            
-        }
-    }
+    
 }

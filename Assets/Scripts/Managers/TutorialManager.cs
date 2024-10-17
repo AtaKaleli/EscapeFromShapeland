@@ -6,54 +6,87 @@ using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
+    [Header("Players")]
     [SerializeField] private Player player;
     [SerializeField] private GameObject playerAIPref;
 
+    [Header("Collider Info")]
     [SerializeField] private GameObject tutorialCollider;
+    [SerializeField] private float colliderOffsetX = 30.0f;
+
+    [Header("Wait Times")]
+    [SerializeField] private float enterTutorialWaitTime = 1.5f;
+    [SerializeField] private float executeTutorialWaitTime = 4.0f;
+
+    [Space]
     [SerializeField] private TextMeshProUGUI tutorialText;
+
 
     private string[] texts = { "Press Space", "Press Space Twice", "Press Shift", "Press Space" };
     private int phaseCounter;
 
+
+
+ 
     public void SpawnPlayerAI()
     {
         StartCoroutine(SpawnCouroutine());
     }
     private IEnumerator SpawnCouroutine()
     {
-        
-        tutorialText.gameObject.SetActive(false);
-        tutorialCollider.transform.position = new Vector2(player.transform.position.x + 30, tutorialCollider.transform.position.y);
-        player.canMove = false;
-        yield return new WaitForSeconds(1.5f);
-
-        if (phaseCounter == 4)
+        if (IsFinalPhase())
         {
-            tutorialText.gameObject.SetActive(true);
-            tutorialText.text = "Have Fun !";
-            yield return new WaitForSeconds(2f);
             GameManager.instance.SwitchToGame();
+            yield break;
         }
-        if (phaseCounter != 4)
-        {
-            playerAIPref.SetActive(true);
 
-        }
-            
+        EnterTutorialPhase();
+        yield return new WaitForSeconds(enterTutorialWaitTime);
 
-        yield return new WaitForSeconds(4f);
-        playerAIPref.SetActive(false);
-        player.canMove = true;
+
+
+        SetAIMovement(true);
+        yield return new WaitForSeconds(executeTutorialWaitTime);
+        ExecuteTutorialPhase();
+    }
+
+    private void EnterTutorialPhase()
+    {
+        tutorialText.gameObject.SetActive(false);
+        SetCollider();
+        SetPlayerMovement(false);
+    }
+
+    private void ExecuteTutorialPhase()
+    {
         
-        if(phaseCounter == 3)
-        {
-            yield return new WaitForSeconds(1.5f);
-        }
-        tutorialText.gameObject.SetActive(true);
+        SetAIMovement(false);
+        SetPlayerMovement(true);
 
+        tutorialText.gameObject.SetActive(true);
         tutorialText.text = texts[phaseCounter];
         phaseCounter++;
     }
 
+    private void SetPlayerMovement(bool canMove)
+    {
+        player.canMove = canMove;
+    }
+
+    private void SetAIMovement(bool isActive)
+    {
+        playerAIPref.SetActive(isActive);
+    }
     
+    private void SetCollider()
+    {
+        tutorialCollider.transform.position = new Vector2(player.transform.position.x + colliderOffsetX, tutorialCollider.transform.position.y);
+    }
+
+    private bool IsFinalPhase()
+    {
+        return phaseCounter == texts.Length;
+    }
+
+   
 }

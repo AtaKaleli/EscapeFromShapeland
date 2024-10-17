@@ -12,7 +12,6 @@ public class UI_FadeEffect : MonoBehaviour
         StartCoroutine(FadeCoroutine(targetAlpha, duration, option));
     }
 
-
     private IEnumerator FadeCoroutine(float targetAlpha, float duration, System.Action option)
     {
         float time = 0;
@@ -33,7 +32,5 @@ public class UI_FadeEffect : MonoBehaviour
         {
             option.Invoke(); // if option method is not null, then invoke it
         }
-
     }
-
 }

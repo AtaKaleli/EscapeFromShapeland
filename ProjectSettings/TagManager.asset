@@ -8,7 +8,7 @@ TagManager:
   - DoubleJumpPhase
   - SlidePhase
   - LedgeClimbPhase
-  - JumpPhaseTrigger
+  - StartTutorial
   layers:
   - Default
   - TransparentFX

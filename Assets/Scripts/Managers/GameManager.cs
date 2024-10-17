@@ -77,9 +77,6 @@ public class GameManager : MonoBehaviour
         fadeEffect.ScreenFade(0, 1.5f);
     }
 
-    
-
-
     #region UI Buttons
 
     public void ResumeGameButton()
@@ -105,7 +102,6 @@ public class GameManager : MonoBehaviour
 
     public void SwitchToGame()
     {
-        
         fadeEffect.ScreenFade(1, 1.5f, RestartGame);
     }
 
@@ -136,8 +132,5 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
-
-
-
 
 }
