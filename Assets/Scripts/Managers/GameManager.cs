@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    
+
+    private UI_FadeEffect fadeEffect;
 
     private bool isGameStarted;
     private bool isGamePaused;
@@ -30,11 +31,13 @@ public class GameManager : MonoBehaviour
             instance = this;
         else
             Destroy(this);
+
+        fadeEffect = FindAnyObjectByType<UI_FadeEffect>();
     }
 
     private void Start()
     {
-       //SaveManager.SaveTotalCoins(190);
+        //SaveManager.SaveTotalCoins(190);
         
     }
 
@@ -69,6 +72,12 @@ public class GameManager : MonoBehaviour
         return (int)Distance * Coins;
     }
 
+    public void FadeOutScreen()
+    {
+        fadeEffect.ScreenFade(0, 1.5f);
+    }
+
+    
 
 
     #region UI Buttons
@@ -94,9 +103,26 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Tutorial");
     }
 
+    public void SwitchToGame()
+    {
+        
+        fadeEffect.ScreenFade(1, 1.5f, RestartGame);
+    }
+
+    public void SwitchToRestartGame()
+    {
+        Time.timeScale = 1;
+        fadeEffect.ScreenFade(1, 1.5f, RestartGame);
+    }
+
     public void RestartGame()
     {
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public void SwitchToTutorial()
+    {
+        fadeEffect.ScreenFade(1, 1.5f, LoadTutorial);
     }
 
     public void LoadTutorial()

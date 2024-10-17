@@ -32,10 +32,15 @@ public class TutorialManager : MonoBehaviour
             tutorialText.gameObject.SetActive(true);
             tutorialText.text = "Have Fun !";
             yield return new WaitForSeconds(2f);
-            SceneManager.LoadScene("SampleScene");
+            GameManager.instance.SwitchToGame();
         }
+        if (phaseCounter != 4)
+        {
+            playerAIPref.SetActive(true);
 
-        playerAIPref.SetActive(true);
+        }
+            
+
         yield return new WaitForSeconds(4f);
         playerAIPref.SetActive(false);
         player.canMove = true;

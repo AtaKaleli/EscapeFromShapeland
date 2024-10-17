@@ -10,8 +10,10 @@ public class UI_Main : MonoBehaviour
     public static UI_Main instance;
     
     [SerializeField] private GameObject[] uiElements;
+    private UI_FadeEffect fadeEffect;
 
 
+    
     private void Awake()
     {
         Time.timeScale = 1;
@@ -27,7 +29,7 @@ public class UI_Main : MonoBehaviour
 
     private void Start()
     {
-        
+        GameManager.instance.FadeOutScreen();
 
         for (int i = 1; i < uiElements.Length; i++)
         {

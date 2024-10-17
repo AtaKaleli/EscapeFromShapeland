@@ -755,7 +755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4884180697310478850, guid: 74bef48b5052f1242ae81107bfd10b5a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9214438966709667616, guid: 74bef48b5052f1242ae81107bfd10b5a, type: 3}
       propertyPath: spawnChance

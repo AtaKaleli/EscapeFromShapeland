@@ -18,9 +18,11 @@ public class UI_Menu : MonoBehaviour
     [SerializeField] private bool isTutorial;
 
     
+
     private void Start()
     {
         LoadSettings();
+       
     }
 
 
