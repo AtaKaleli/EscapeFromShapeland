@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
         slideTimeCounter -= Time.deltaTime;
         cayoteJumpCounter -= Time.deltaTime;
 
-       
+        
 
         AnimationContoller();
         CollisionChecks();
@@ -319,6 +319,7 @@ public class Player : MonoBehaviour
     {
         if (rb.velocity.y < -25f && isGrounded && canGrabLedge)
         {
+            Time.timeScale = 0.6f;
             AudioManager.instance.PlaySfx(13);
             isRolling = true;
         }
@@ -326,6 +327,7 @@ public class Player : MonoBehaviour
 
     public void CancelRolling()
     {
+        Time.timeScale = 1.0f;
         isRolling = false;
     }
 
@@ -359,6 +361,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator DieCouroutine()
     {
+        Time.timeScale = 0.6f;
         AudioManager.instance.StopBgm();
         isDead = true;
         rb.velocity = knockbackDirection;
@@ -367,7 +370,7 @@ public class Player : MonoBehaviour
         GameManager.instance.Distance = transform.position.x;
         yield return new WaitForSeconds(1f);
         UI_Main.instance.SwitchToUI(endGameUI);
-
+        Time.timeScale = 1.0f;
     }
 
     private void Knockback()
