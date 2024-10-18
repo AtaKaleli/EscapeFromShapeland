@@ -2,9 +2,11 @@ using Cinemachine;
 using System.Collections;
 using UnityEngine;
 
+
 public class RandomPicker : MonoBehaviour
 {
     private Player player;
+    private PostProcessController postProcessController;
 
     [SerializeField] private float spawnChance;
     [SerializeField] private float pickerTime = 5.0f;
@@ -15,7 +17,8 @@ public class RandomPicker : MonoBehaviour
     private float defaultOrthoSize = 8.0f;
     private float defaultScreenX = 0.1f;
 
-    //Random Property - CoinShower
+    //Random Property - ReduceVision
+    
 
 
     private void Awake()
@@ -28,6 +31,9 @@ public class RandomPicker : MonoBehaviour
         
         if (player == null)
             player = FindAnyObjectByType<Player>();
+
+        if (postProcessController == null)
+            postProcessController = FindAnyObjectByType<PostProcessController>();
     }
 
     private void Start()
@@ -40,7 +46,7 @@ public class RandomPicker : MonoBehaviour
     {
         if (collision.GetComponent<Player>() != null)
         {
-            StartCoroutine(ImmunePlayerCoroutine());
+            StartCoroutine(ReduceVisionCoroutine());
             
             
         }
@@ -60,32 +66,14 @@ public class RandomPicker : MonoBehaviour
         Color midAlphaColor = new Color(sr.color.r, sr.color.g, sr.color.b, 0.75f);
         Color lowAlphaColor = new Color(sr.color.r, sr.color.g, sr.color.b, 0.25f);
 
-        sr.color = lowAlphaColor;
-        yield return new WaitForSeconds(0.5f);
-        sr.color = midAlphaColor;
-        yield return new WaitForSeconds(0.5f);
-
-        sr.color = lowAlphaColor;
-        yield return new WaitForSeconds(0.5f);
-        sr.color = midAlphaColor;
-        yield return new WaitForSeconds(0.5f);
-
-        sr.color = lowAlphaColor;
-        yield return new WaitForSeconds(0.5f);
-        sr.color = midAlphaColor;
-        yield return new WaitForSeconds(0.5f);
-
-        sr.color = lowAlphaColor;
-        yield return new WaitForSeconds(0.5f);
-        sr.color = midAlphaColor;
-        yield return new WaitForSeconds(0.5f);
-
-        sr.color = lowAlphaColor;
-        yield return new WaitForSeconds(0.5f);
-        sr.color = midAlphaColor;
-        yield return new WaitForSeconds(0.5f);
-
-
+        for (int i = 0; i < 5; i++)
+        {
+            print(i);
+            sr.color = lowAlphaColor;
+            yield return new WaitForSeconds(0.5f);
+            sr.color = midAlphaColor;
+            yield return new WaitForSeconds(0.5f);
+        }
 
         sr.color = normalColor;
         player.canBeKnocked = true;
@@ -116,6 +104,17 @@ public class RandomPicker : MonoBehaviour
         player.GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(pickerTime);
         player.GetComponent<SpriteRenderer>().enabled = true;
+
+        EnableRandomPicker();
+    }
+
+    private IEnumerator ReduceVisionCoroutine()
+    {
+        DisableRandomPicker();
+
+        postProcessController.isActive = true;
+        yield return new WaitForSeconds(pickerTime);
+        postProcessController.isActive = false;
 
         EnableRandomPicker();
     }
