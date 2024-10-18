@@ -1116,7 +1116,7 @@ MonoBehaviour:
     m_Bits: 64
   wallCheck: {fileID: 865157448}
   wallCheckSize: {x: 0.4, y: 2.5}
-  slideTime: 1
+  slideTime: 0.5
   upperGroundCheckDistance: 0.8
   isSliding: 0
   canSlide: 1

@@ -36,23 +36,30 @@ public class RandomPicker : MonoBehaviour
             postProcessController = FindAnyObjectByType<PostProcessController>();
     }
 
-    private void Start()
-    {
-
-    }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<Player>() != null)
         {
-            StartCoroutine(IncreaseLensDistortionCoroutine());
-            
-            
+            int randomPickerValue = Random.Range(0, 101);
+            PickerDecider(randomPickerValue);
         }
+    }
 
 
 
+    private void PickerDecider(int randomPickerValue)
+    {
+        if (randomPickerValue > 0 && randomPickerValue <= 20)
+            StartCoroutine(ImmunePlayerCoroutine());
+        else if (randomPickerValue > 20 && randomPickerValue <= 40)
+            StartCoroutine(RotateScreenCoroutine());
+        else if (randomPickerValue > 40 && randomPickerValue <= 60)
+            StartCoroutine(DisableSpriteCoroutine());
+        else if (randomPickerValue > 60 && randomPickerValue <= 80)
+            StartCoroutine(ReduceVisionCoroutine());
+        else if (randomPickerValue > 80 && randomPickerValue <= 100)
+            StartCoroutine(IncreaseLensDistortionCoroutine());
     }
 
     private IEnumerator ImmunePlayerCoroutine()
@@ -68,7 +75,6 @@ public class RandomPicker : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            print(i);
             sr.color = lowAlphaColor;
             yield return new WaitForSeconds(0.5f);
             sr.color = midAlphaColor;
@@ -127,13 +133,6 @@ public class RandomPicker : MonoBehaviour
         yield return new WaitForSeconds(pickerTime);
         postProcessController.lensDistortionStatus = false;
 
-        EnableRandomPicker();
-    }
-
-    private IEnumerator CoinShowerCoroutine()
-    {
-        DisableRandomPicker();
-        yield return new WaitForSeconds(pickerTime);
         EnableRandomPicker();
     }
 

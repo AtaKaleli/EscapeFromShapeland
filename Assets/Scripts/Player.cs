@@ -171,7 +171,7 @@ public class Player : MonoBehaviour
     {
         if(!canMove)
             rb.velocity = new Vector2(0, rb.velocity.y);
-        else if (!isWallDetected || isSliding)
+        else if (!isWallDetected)
             rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
     }
 

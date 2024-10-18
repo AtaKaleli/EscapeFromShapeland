@@ -54,16 +54,13 @@ AnimatorStateMachine:
     m_Position: {x: 830, y: 10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7675092533086072917}
-    m_Position: {x: 620, y: -20, z: 0}
+    m_Position: {x: 610, y: -30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3009762743852983312}
     m_Position: {x: 1170, y: -30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4310967233206232733}
-    m_Position: {x: 520, y: -80, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -6465324937187503169}
-    m_Position: {x: 555, y: -15, z: 0}
+    m_Position: {x: 490, y: -110, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 2422992649530160423}
@@ -153,32 +150,6 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: d8ff48dd5fe60044cacbf52556da60cd, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &-6465324937187503169
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Player_test
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: a283f15bfd2e84444a75e066abb8fd16, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
