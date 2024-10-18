@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sr;
     private TutorialManager tutorialManager;
+
     
 
     [Header("Player Inputs")]
@@ -80,6 +81,9 @@ public class Player : MonoBehaviour
 
     //UI Information
     [SerializeField] private GameObject endGameUI;
+
+    //particle system
+    [SerializeField] private ParticleSystem bloodSplatter;
 
 
 
@@ -337,6 +341,7 @@ public class Player : MonoBehaviour
     {
         if (hasExtraLife)
         {
+            bloodSplatter.Play();
             AudioManager.instance.PlaySfx(3);
             SlowDownController();
             Knockback();
@@ -344,7 +349,6 @@ public class Player : MonoBehaviour
         }
         else
         {
-            
             Die();
         }
     }
@@ -353,6 +357,7 @@ public class Player : MonoBehaviour
     {
         if (canBeKnocked)
         {
+            bloodSplatter.Play();
             AudioManager.instance.PlaySfx(7);
             StartCoroutine(DieCouroutine());
         }
