@@ -46,7 +46,7 @@ public class RandomPicker : MonoBehaviour
     {
         if (collision.GetComponent<Player>() != null)
         {
-            StartCoroutine(ReduceVisionCoroutine());
+            StartCoroutine(IncreaseLensDistortionCoroutine());
             
             
         }
@@ -112,9 +112,20 @@ public class RandomPicker : MonoBehaviour
     {
         DisableRandomPicker();
 
-        postProcessController.isActive = true;
+        postProcessController.vignetteStatus = true;
         yield return new WaitForSeconds(pickerTime);
-        postProcessController.isActive = false;
+        postProcessController.vignetteStatus = false;
+
+        EnableRandomPicker();
+    }
+
+    private IEnumerator IncreaseLensDistortionCoroutine()
+    {
+        DisableRandomPicker();
+
+        postProcessController.lensDistortionStatus = true;
+        yield return new WaitForSeconds(pickerTime);
+        postProcessController.lensDistortionStatus = false;
 
         EnableRandomPicker();
     }

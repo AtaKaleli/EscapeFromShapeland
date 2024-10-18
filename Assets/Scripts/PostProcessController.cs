@@ -7,8 +7,10 @@ public class PostProcessController : MonoBehaviour
 {
     [SerializeField] private PostProcessVolume postProcessVolume;
     private Vignette vignette;
+    private LensDistortion lensDistortion;
 
-    [HideInInspector] public bool isActive;
+    [HideInInspector] public bool vignetteStatus;
+    [HideInInspector] public bool lensDistortionStatus;
     
     
     
@@ -16,11 +18,13 @@ public class PostProcessController : MonoBehaviour
     {
         postProcessVolume = GetComponent<PostProcessVolume>();
         postProcessVolume.profile.TryGetSettings(out vignette);
+        postProcessVolume.profile.TryGetSettings(out lensDistortion);
     }
 
     private void Update()
     {
-        vignette.active = isActive;
+        vignette.active = vignetteStatus;
+        lensDistortion.active = lensDistortionStatus;
     }
 
 
