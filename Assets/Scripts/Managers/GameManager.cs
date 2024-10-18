@@ -11,18 +11,22 @@ public class GameManager : MonoBehaviour
 
     private UI_FadeEffect fadeEffect;
 
+    //in game details
     private bool isGameStarted;
     private bool isGamePaused;
 
+    //score details
     private float distance;
     private int coins;
     
+    //random picker details
+    private bool canSpawn = true;
+
 
     public int Coins { get { return coins; } set { coins = value; } }
     public float Distance { get { return distance; } set { distance = value; } }
     public bool GameStarted { get { return isGameStarted; } set { isGameStarted = value; } }
-
-
+    public bool CanSpawn { get { return canSpawn; } set { canSpawn = value; } }
 
 
     private void Awake()

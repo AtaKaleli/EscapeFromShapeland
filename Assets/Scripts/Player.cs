@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float knockbackTime;
     [SerializeField] private Vector2 knockbackDirection;
     private bool isKnocked;
-    private bool canBeKnocked = true;
+    [HideInInspector] public bool canBeKnocked = true;
 
 
     //Player Die Information
@@ -150,7 +150,7 @@ public class Player : MonoBehaviour
 
     private void InputChecks()
     {
-        if (!canMove)
+        if (!canMove || isRolling)
             return;
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -341,11 +341,7 @@ public class Player : MonoBehaviour
     {
         if (hasExtraLife)
         {
-            bloodSplatter.Play();
-            AudioManager.instance.PlaySfx(3);
-            SlowDownController();
             Knockback();
-            hasExtraLife = false;
         }
         else
         {
@@ -385,12 +381,15 @@ public class Player : MonoBehaviour
 
     private IEnumerator KnockbackCouroutine()
     {
-
+        bloodSplatter.Play();
+        AudioManager.instance.PlaySfx(3);
+        SlowDownController();
 
         Color normalColor = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
         Color midAlphaColor = new Color(sr.color.r, sr.color.g, sr.color.b, 0.75f);
         Color lowAlphaColor = new Color(sr.color.r, sr.color.g, sr.color.b, 0.25f);
 
+        hasExtraLife = false;
         isKnocked = true;
         canBeKnocked = false;
         rb.velocity = knockbackDirection;
