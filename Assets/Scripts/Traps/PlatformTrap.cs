@@ -7,6 +7,7 @@ public class PlatformTrap : Trap
 {
     private Rigidbody2D rb;
 
+    [SerializeField] private ParticleSystem dropFX;
 
     [Header("Collision Detection - Player")]
     [SerializeField] private Transform playerCheck;
@@ -33,10 +34,18 @@ public class PlatformTrap : Trap
         isPlayerDetected = Physics2D.Raycast(playerCheck.position, Vector2.down, playerCheckDistance, whatIsPlayer);
 
         if (isPlayerDetected)
+        {
             rb.gravityScale = 12.5f;
+            
+            Invoke("PlayDropFX", 0.25f);
+        }
 
     }
 
+    private void PlayDropFX()
+    {
+        dropFX.Play();
+    }
     
 
     private void OnDrawGizmos()
