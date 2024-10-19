@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float slideTime;
     private float slideTimeCounter;
     [SerializeField] private float upperGroundCheckDistance;
-    private bool isUpperGrounded;
+    [HideInInspector] public bool isUpperGrounded;
     [HideInInspector] public bool isSliding;
     [HideInInspector] public bool canSlide = true;
 
@@ -151,7 +151,7 @@ public class Player : MonoBehaviour
 
     private void InputChecks()
     {
-        if (!canMove || isRolling)
+        if (!canMove)
             return;
 
         if (Input.GetKeyDown(KeyCode.Space))

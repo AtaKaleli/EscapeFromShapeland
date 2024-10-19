@@ -33,7 +33,7 @@ public class PlatformTrap : Trap
         isPlayerDetected = Physics2D.Raycast(playerCheck.position, Vector2.down, playerCheckDistance, whatIsPlayer);
 
         if (isPlayerDetected)
-            rb.gravityScale = 15;
+            rb.gravityScale = 12.5f;
 
     }
 

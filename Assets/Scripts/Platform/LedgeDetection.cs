@@ -20,7 +20,7 @@ public class LedgeDetection : MonoBehaviour
         if(player != null)
         {
             
-            if (canDetectLedge && !player.isSliding)
+            if (canDetectLedge && !player.isSliding && !player.isUpperGrounded)
                 player.isLedgeDetected = Physics2D.OverlapCircle(transform.position, ledgeCheckRadius, whatIsGround);
 
         }

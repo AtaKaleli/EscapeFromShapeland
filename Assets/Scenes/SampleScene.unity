@@ -1105,7 +1105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e9169b0aad30f49823138ce2a9056d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
+  moveSpeed: 8
   jumpForce: 15
   canMove: 1
   cayoteJumpTime: 0.1
@@ -1117,7 +1117,8 @@ MonoBehaviour:
   wallCheck: {fileID: 865157448}
   wallCheckSize: {x: 0.4, y: 2.5}
   slideTime: 0.5
-  upperGroundCheckDistance: 2
+  upperGroundCheckDistance: 1.51
+  isUpperGrounded: 0
   isSliding: 0
   canSlide: 1
   offset1: {x: -0.4, y: -1.12}
@@ -1126,7 +1127,7 @@ MonoBehaviour:
   milestoneDistance: 100
   speedMultiplier: 1.25
   distanceMultiplier: 1.5
-  maxMoveSpeed: 20
+  maxMoveSpeed: 15
   knockbackTime: 0.75
   knockbackDirection: {x: -10, y: 10}
   canBeKnocked: 1
@@ -7860,7 +7861,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849851289}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.414, y: 0.13, z: 0}
+  m_LocalPosition: {x: 0.503, y: 1.168, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7880,7 +7881,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.39256477, y: 0.25892603}
+  m_Offset: {x: 0.47736967, y: 0.017900944}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -7891,7 +7892,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1169338, y: 0.48214793}
+  m_Size: {x: 0.94732404, y: 0.34824562}
   m_EdgeRadius: 0
 --- !u!114 &849851292
 MonoBehaviour:
@@ -13210,6 +13211,12 @@ MonoBehaviour:
   - {fileID: 5976290276158084370, guid: 527431ff17cdbbf46b3743d0a75198c6, type: 3}
   - {fileID: 2401588225286288192, guid: 8cbafcbd47d9e4e4e8aeb51e2d349264, type: 3}
   - {fileID: 4568357207100880087, guid: a4d2f74ffb0e8d2448b75307f49bd46f, type: 3}
+  - {fileID: 8472430143216907722, guid: cfa264d295d964749a12117ee84796d9, type: 3}
+  - {fileID: 7223240542874211800, guid: f24b7638dc207244ba15411abd3ebab7, type: 3}
+  - {fileID: 1421184736817862614, guid: c83ed852fa3bb3c4cb695a8fc53139a7, type: 3}
+  - {fileID: 7480170292958504398, guid: c460a9b3b4e4b6849b18244d0307e623, type: 3}
+  - {fileID: 607411477575419333, guid: 437a52368250f9447acc7d31c3a5dd9c, type: 3}
+  - {fileID: 6471554909584763337, guid: 6673487452331b8489e4d085920cb7b3, type: 3}
   levelPartParent: {fileID: 1261201538}
   respawnPoint: {x: 20, y: 0, z: 0}
   distanceToSpawn: 50
