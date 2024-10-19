@@ -17,13 +17,13 @@ public class RandomPicker : MonoBehaviour
     private float defaultOrthoSize = 8.0f;
     private float defaultScreenX = 0.1f;
 
-    //Random Property - ReduceVision
+    
     
 
 
     private void Awake()
     {
-        if (spawnChance < Random.Range(0, 100) || !GameManager.instance.CanSpawn)
+        if (spawnChance < Random.Range(0, 100))
             Destroy(gameObject);
         
         if(virtualCamera == null)

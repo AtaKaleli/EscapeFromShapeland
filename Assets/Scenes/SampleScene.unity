@@ -1105,7 +1105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e9169b0aad30f49823138ce2a9056d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
+  moveSpeed: 8
   jumpForce: 15
   canMove: 1
   cayoteJumpTime: 0.1
@@ -1126,7 +1126,7 @@ MonoBehaviour:
   milestoneDistance: 100
   speedMultiplier: 1.25
   distanceMultiplier: 1.5
-  maxMoveSpeed: 25
+  maxMoveSpeed: 20
   knockbackTime: 0.75
   knockbackDirection: {x: -10, y: 10}
   canBeKnocked: 1
@@ -13207,7 +13207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelPartPref:
-  - {fileID: 5976290276158084370, guid: 527431ff17cdbbf46b3743d0a75198c6, type: 3}
+  - {fileID: 2401588225286288192, guid: 8cbafcbd47d9e4e4e8aeb51e2d349264, type: 3}
   levelPartParent: {fileID: 1261201538}
   respawnPoint: {x: 20, y: 0, z: 0}
   distanceToSpawn: 50

@@ -110,6 +110,7 @@ public class Player : MonoBehaviour
         slideTimeCounter -= Time.deltaTime;
         cayoteJumpCounter -= Time.deltaTime;
 
+   
         
 
         AnimationContoller();
@@ -171,7 +172,7 @@ public class Player : MonoBehaviour
     {
         if(!canMove)
             rb.velocity = new Vector2(0, rb.velocity.y);
-        else if (!isWallDetected)
+        else if (!isWallDetected || isSliding)
             rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
     }
 

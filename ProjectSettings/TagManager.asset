@@ -9,6 +9,9 @@ TagManager:
   - SlidePhase
   - LedgeClimbPhase
   - StartTutorial
+  - Trap
+  - Platform
+  - CoinGenerator
   layers:
   - Default
   - TransparentFX

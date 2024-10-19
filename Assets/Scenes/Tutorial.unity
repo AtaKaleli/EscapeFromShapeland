@@ -644,9 +644,11 @@ MonoBehaviour:
   maxMoveSpeed: 10
   knockbackTime: 0.75
   knockbackDirection: {x: -10, y: 10}
+  canBeKnocked: 1
   isDead: 0
   hasExtraLife: 0
   endGameUI: {fileID: 0}
+  bloodSplatter: {fileID: 0}
 --- !u!95 &132057406
 Animator:
   serializedVersion: 5
@@ -2424,7 +2426,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851357748}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.60810375, y: -0.5896693, z: 0}
+  m_LocalPosition: {x: -0.60810375, y: -0.553, z: 0}
   m_LocalScale: {x: 0.07190876, y: 0.082431145, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4755,6 +4757,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fade_Image
       objectReference: {fileID: 0}
+    - target: {fileID: 854017161307061817, guid: 85bbbc028785a5e4baa0857a63388979, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 854017161307061818, guid: 85bbbc028785a5e4baa0857a63388979, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5201,8 +5207,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734083533}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 84.2711, y: 11.0263, z: 0}
-  m_LocalScale: {x: 11.091689, y: 13.614315, z: 1}
+  m_LocalPosition: {x: 84.2711, y: 10.8351, z: 0}
+  m_LocalScale: {x: 11.091689, y: 13.996513, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 851357749}
@@ -5468,10 +5474,10 @@ MonoBehaviour:
   player: {fileID: 132057405}
   playerAIPref: {fileID: 3715318500592221551}
   tutorialCollider: {fileID: 1587728386}
-  tutorialText: {fileID: 1640651793}
+  colliderOffsetX: 30
   enterTutorialWaitTime: 1.5
   executeTutorialWaitTime: 4
-  colliderOffsetX: 30
+  tutorialText: {fileID: 1640651793}
 --- !u!1 &1833751454
 GameObject:
   m_ObjectHideFlags: 0

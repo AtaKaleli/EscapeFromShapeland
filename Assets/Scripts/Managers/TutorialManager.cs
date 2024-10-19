@@ -36,6 +36,8 @@ public class TutorialManager : MonoBehaviour
     {
         if (IsFinalPhase())
         {
+            tutorialText.gameObject.SetActive(false);
+            SetPlayerMovement(false);
             GameManager.instance.SwitchToGame();
             yield break;
         }
