@@ -372,6 +372,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1f);
         UI_Main.instance.SwitchToUI(endGameUI);
         Time.timeScale = 1.0f;
+        GameManager.instance.TookDamage = false;
     }
 
     private void Knockback()
@@ -431,7 +432,7 @@ public class Player : MonoBehaviour
 
         sr.color = normalColor;
         canBeKnocked = true;
-
+        GameManager.instance.TookDamage = false;
 
     }
 

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     //in game details
     private bool isGameStarted;
     private bool isGamePaused;
+    private bool tookDamage; // indicates that player take damage from trap or not
 
     //score details
     private float distance;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     public float Distance { get { return distance; } set { distance = value; } }
     public bool GameStarted { get { return isGameStarted; } set { isGameStarted = value; } }
     public bool CanSpawn { get { return canSpawn; } set { canSpawn = value; } }
+    public bool TookDamage { get { return tookDamage; } set { tookDamage = value; } }
 
 
     private void Awake()

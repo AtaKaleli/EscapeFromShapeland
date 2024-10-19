@@ -4,6 +4,7 @@ public class Trap : MonoBehaviour
 {
 
     [SerializeField] protected int spawnChance;
+    
 
     protected virtual void Start()
     {
@@ -15,8 +16,10 @@ public class Trap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Player>() != null)
+        if (collision.GetComponent<Player>() != null && !GameManager.instance.TookDamage)
         {
+            print("took dmg");
+            GameManager.instance.TookDamage = true;
             Player player = collision.GetComponent<Player>();
             player.Damage();
         }

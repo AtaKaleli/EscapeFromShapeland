@@ -1105,7 +1105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e9169b0aad30f49823138ce2a9056d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
+  moveSpeed: 15
   jumpForce: 15
   canMove: 1
   cayoteJumpTime: 0.1
