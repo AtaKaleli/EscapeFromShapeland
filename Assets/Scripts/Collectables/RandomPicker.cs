@@ -9,7 +9,7 @@ public class RandomPicker : MonoBehaviour
     private PostProcessController postProcessController;
 
     [SerializeField] private float spawnChance;
-    [SerializeField] private float pickerTime = 5.0f;
+    [SerializeField] private float pickerTime = 4.0f;
     
 
     //Random Property - RotateScreen

@@ -978,7 +978,7 @@ GameObject:
   - component: {fileID: 132057401}
   - component: {fileID: 132057405}
   - component: {fileID: 132057406}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1105,7 +1105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e9169b0aad30f49823138ce2a9056d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
+  moveSpeed: 15
   jumpForce: 15
   canMove: 1
   cayoteJumpTime: 0.1
@@ -1117,7 +1117,7 @@ MonoBehaviour:
   wallCheck: {fileID: 865157448}
   wallCheckSize: {x: 0.4, y: 2.5}
   slideTime: 0.5
-  upperGroundCheckDistance: 0.8
+  upperGroundCheckDistance: 2
   isSliding: 0
   canSlide: 1
   offset1: {x: -0.4, y: -1.12}
@@ -7860,7 +7860,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849851289}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.414, y: 1.1, z: 0}
+  m_LocalPosition: {x: 0.414, y: 0.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13207,7 +13207,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelPartPref:
+  - {fileID: 5976290276158084370, guid: 527431ff17cdbbf46b3743d0a75198c6, type: 3}
   - {fileID: 2401588225286288192, guid: 8cbafcbd47d9e4e4e8aeb51e2d349264, type: 3}
+  - {fileID: 4568357207100880087, guid: a4d2f74ffb0e8d2448b75307f49bd46f, type: 3}
   levelPartParent: {fileID: 1261201538}
   respawnPoint: {x: 20, y: 0, z: 0}
   distanceToSpawn: 50
@@ -15870,46 +15872,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerColor:
-  - price: 10
-    color: {r: 1, g: 0.51155347, b: 0, a: 1}
-  - price: 20
-    color: {r: 0.13664317, g: 1, b: 0, a: 1}
-  - price: 30
-    color: {r: 0.43118572, g: 0, b: 1, a: 1}
-  - price: 40
-    color: {r: 0, g: 0.6092677, b: 1, a: 1}
-  - price: 50
-    color: {r: 0.7777505, g: 1, b: 0, a: 1}
-  - price: 60
-    color: {r: 0.1924457, g: 0.4007578, b: 0.6754716, a: 1}
-  - price: 70
-    color: {r: 0.6955943, g: 0, b: 1, a: 1}
-  - price: 80
-    color: {r: 1, g: 0.8100858, b: 0, a: 1}
-  - price: 90
-    color: {r: 1, g: 0.3328829, b: 0, a: 1}
   - price: 100
+    color: {r: 1, g: 0.51155347, b: 0, a: 1}
+  - price: 200
+    color: {r: 0.13664317, g: 1, b: 0, a: 1}
+  - price: 300
+    color: {r: 0.43118572, g: 0, b: 1, a: 1}
+  - price: 400
+    color: {r: 0, g: 0.6092677, b: 1, a: 1}
+  - price: 500
+    color: {r: 0.7777505, g: 1, b: 0, a: 1}
+  - price: 600
+    color: {r: 0.1924457, g: 0.4007578, b: 0.6754716, a: 1}
+  - price: 700
+    color: {r: 0.6955943, g: 0, b: 1, a: 1}
+  - price: 800
+    color: {r: 1, g: 0.8100858, b: 0, a: 1}
+  - price: 900
+    color: {r: 1, g: 0.3328829, b: 0, a: 1}
+  - price: 1000
     color: {r: 0.3883165, g: 0.25851902, b: 0.554717, a: 1}
   platformColor:
-  - price: 10
-    color: {r: 0.5441966, g: 0, b: 1, a: 1}
-  - price: 20
-    color: {r: 0, g: 0.11731386, b: 1, a: 1}
-  - price: 30
-    color: {r: 0.97862744, g: 1, b: 0, a: 1}
-  - price: 40
-    color: {r: 0.30081654, g: 0, b: 1, a: 1}
-  - price: 50
-    color: {r: 0.44219637, g: 0, b: 1, a: 1}
-  - price: 60
-    color: {r: 0, g: 0.47095394, b: 1, a: 1}
-  - price: 70
-    color: {r: 0.7908435, g: 0, b: 1, a: 1}
-  - price: 80
-    color: {r: 0, g: 0.7968452, b: 1, a: 1}
-  - price: 80
-    color: {r: 0, g: 0.7968452, b: 1, a: 1}
   - price: 100
+    color: {r: 0.5441966, g: 0, b: 1, a: 1}
+  - price: 200
+    color: {r: 0, g: 0.11731386, b: 1, a: 1}
+  - price: 300
+    color: {r: 0.97862744, g: 1, b: 0, a: 1}
+  - price: 400
+    color: {r: 0.30081654, g: 0, b: 1, a: 1}
+  - price: 500
+    color: {r: 0.44219637, g: 0, b: 1, a: 1}
+  - price: 600
+    color: {r: 0, g: 0.47095394, b: 1, a: 1}
+  - price: 700
+    color: {r: 0.7908435, g: 0, b: 1, a: 1}
+  - price: 800
+    color: {r: 0, g: 0.7968452, b: 1, a: 1}
+  - price: 900
+    color: {r: 0, g: 0.7968452, b: 1, a: 1}
+  - price: 1000
     color: {r: 1, g: 0.9108132, b: 0, a: 1}
   playerColorButton: {fileID: 1971457606430069439, guid: 8fe3b2e12e798974a96acdc3f5c6d2ca, type: 3}
   platformColorButton: {fileID: 5407553908436257373, guid: 892725b2bd76c064481753f6823003bf, type: 3}
@@ -30296,46 +30298,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerColor:
-  - price: 10
-    color: {r: 1, g: 0.51155347, b: 0, a: 1}
-  - price: 20
-    color: {r: 0.13664317, g: 1, b: 0, a: 1}
-  - price: 30
-    color: {r: 0.43118572, g: 0, b: 1, a: 1}
-  - price: 40
-    color: {r: 0, g: 0.6092677, b: 1, a: 1}
-  - price: 50
-    color: {r: 0.7777505, g: 1, b: 0, a: 1}
-  - price: 60
-    color: {r: 0.1924457, g: 0.4007578, b: 0.6754716, a: 1}
-  - price: 70
-    color: {r: 0.69411767, g: 0, b: 1, a: 1}
-  - price: 80
-    color: {r: 1, g: 0.8100858, b: 0, a: 1}
-  - price: 90
-    color: {r: 1, g: 0.3328829, b: 0, a: 1}
   - price: 100
+    color: {r: 1, g: 0.51155347, b: 0, a: 1}
+  - price: 200
+    color: {r: 0.13664317, g: 1, b: 0, a: 1}
+  - price: 300
+    color: {r: 0.43118572, g: 0, b: 1, a: 1}
+  - price: 400
+    color: {r: 0, g: 0.6092677, b: 1, a: 1}
+  - price: 500
+    color: {r: 0.7777505, g: 1, b: 0, a: 1}
+  - price: 600
+    color: {r: 0.1924457, g: 0.4007578, b: 0.6754716, a: 1}
+  - price: 700
+    color: {r: 0.69411767, g: 0, b: 1, a: 1}
+  - price: 800
+    color: {r: 1, g: 0.8100858, b: 0, a: 1}
+  - price: 900
+    color: {r: 1, g: 0.3328829, b: 0, a: 1}
+  - price: 1000
     color: {r: 0.3883165, g: 0.25851902, b: 0.554717, a: 1}
   platformColor:
-  - price: 10
-    color: {r: 0.5441966, g: 0, b: 1, a: 1}
-  - price: 20
-    color: {r: 0, g: 0.11731386, b: 1, a: 1}
-  - price: 30
-    color: {r: 0.97862744, g: 1, b: 0, a: 1}
-  - price: 40
-    color: {r: 0.30081654, g: 0, b: 1, a: 1}
-  - price: 50
-    color: {r: 0.44219637, g: 0, b: 1, a: 1}
-  - price: 60
-    color: {r: 0, g: 0.47095394, b: 1, a: 1}
-  - price: 70
-    color: {r: 0.7908435, g: 0, b: 1, a: 1}
-  - price: 80
-    color: {r: 0, g: 0.7968452, b: 1, a: 1}
-  - price: 90
-    color: {r: 1, g: 0.43925616, b: 0, a: 1}
   - price: 100
+    color: {r: 0.5441966, g: 0, b: 1, a: 1}
+  - price: 200
+    color: {r: 0, g: 0.11731386, b: 1, a: 1}
+  - price: 300
+    color: {r: 0.97862744, g: 1, b: 0, a: 1}
+  - price: 400
+    color: {r: 0.30081654, g: 0, b: 1, a: 1}
+  - price: 500
+    color: {r: 0.44219637, g: 0, b: 1, a: 1}
+  - price: 600
+    color: {r: 0, g: 0.47095394, b: 1, a: 1}
+  - price: 700
+    color: {r: 0.7908435, g: 0, b: 1, a: 1}
+  - price: 800
+    color: {r: 0, g: 0.7968452, b: 1, a: 1}
+  - price: 900
+    color: {r: 1, g: 0.43925616, b: 0, a: 1}
+  - price: 1000
     color: {r: 1, g: 0.9108132, b: 0, a: 1}
   totalCoinsText: {fileID: 1974311998}
   informationText: {fileID: 4829977023396089389}
