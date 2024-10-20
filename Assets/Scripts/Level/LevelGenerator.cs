@@ -36,7 +36,7 @@ public class LevelGenerator : MonoBehaviour
     private void LevelPartGenerator()
     {
         int randomIndex = Random.Range(0, levelPartPref.Length);
-        Transform levelPart = Instantiate(levelPartPref[7], new Vector2(respawnPoint.x,respawnPoint.y + 2.21f), Quaternion.identity, levelPartParent);
+        Transform levelPart = Instantiate(levelPartPref[randomIndex], new Vector2(respawnPoint.x,respawnPoint.y + 2.21f), Quaternion.identity, levelPartParent);
         Vector3 nextPosition = levelPart.Find("EndPoint").position - levelPart.Find("StartPoint").position;
         respawnPoint = new Vector3(levelPart.position.x + nextPosition.x, nextPosition.y, nextPosition.z);
     }

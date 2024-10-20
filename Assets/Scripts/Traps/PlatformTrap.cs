@@ -36,7 +36,6 @@ public class PlatformTrap : Trap
         if (isPlayerDetected)
         {
             rb.gravityScale = 12.5f;
-            
             Invoke("PlayDropFX", 0.25f);
         }
 

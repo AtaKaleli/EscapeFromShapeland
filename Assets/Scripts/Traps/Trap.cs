@@ -18,7 +18,6 @@ public class Trap : MonoBehaviour
     {
         if (collision.GetComponent<Player>() != null && !GameManager.instance.TookDamage)
         {
-            print("took dmg");
             GameManager.instance.TookDamage = true;
             Player player = collision.GetComponent<Player>();
             player.Damage();

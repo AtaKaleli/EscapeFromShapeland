@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24720435c31a73840b378158609e01a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnChance: 50
+  spawnChance: 75
   movePoints:
   - {fileID: 344407039590429425}
   - {fileID: 7652075132503844989}

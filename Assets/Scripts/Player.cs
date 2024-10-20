@@ -289,7 +289,7 @@ public class Player : MonoBehaviour
         
         if (moveSpeed == maxMoveSpeed)
         {
-            
+            GameManager.instance.TookDamage = false;
             hasExtraLife = true;
             return;
         }

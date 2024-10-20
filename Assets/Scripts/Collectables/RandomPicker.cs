@@ -83,7 +83,7 @@ public class RandomPicker : MonoBehaviour
 
         sr.color = normalColor;
         player.canBeKnocked = true;
-
+        GameManager.instance.TookDamage = false;
 
         EnableRandomPicker();
     }
